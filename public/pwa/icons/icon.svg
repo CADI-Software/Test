@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- PLATZHALTER-Icon: durch das echte alle-noten.de-Logo ersetzen.
+       Randlos (full bleed); das Motiv muss im inneren Kreis mit 80 % Durchmesser liegen,
+       damit Android es beim Zuschneiden (maskable) nicht abschneidet. -->
+  <rect width="512" height="512" fill="#222222"/>
+  <g fill="#ffffff">
+    <ellipse cx="210" cy="350" rx="62" ry="46" transform="rotate(-20 210 350)"/>
+    <rect x="254" y="120" width="18" height="232"/>
+    <path d="M254 120 C 262 176, 362 182, 348 276 C 340 232, 300 214, 272 212 Z"/>
+  </g>
+</svg>
