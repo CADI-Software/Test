@@ -15,6 +15,10 @@
  ],
  "upcoming": [
   {
+   "area": "ki",
+   "title": "AI doom: which catastrophe scenarios experts take seriously, and why"
+  },
+  {
    "area": "adhs",
    "title": "Not a lack of attention: what the ADHD brain regulates differently"
   },
@@ -28,15 +32,15 @@
   },
   {
    "area": "ki",
+   "title": "Preparing for an AI-shaped decade: what you can actually do"
+  },
+  {
+   "area": "ki",
    "title": "How a network learns: error, slope, backpropagation"
   },
   {
    "area": "adhs",
    "title": "Time blindness: why there is only “now” and “not now”"
-  },
-  {
-   "area": "bonus",
-   "title": "A surprise topic based on your feedback"
   }
  ],
  "updated": "2026-11-17T08:41:47.917Z"

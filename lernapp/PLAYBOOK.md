@@ -39,6 +39,8 @@ Dieses Dokument beschreibt, wie eine Folge entsteht. Einstellungen stehen in `co
    Zahlen, Jahreszahlen und Studien nur nennen, wenn sie belegt sind. Unsicheres als unsicher kennzeichnen. Quellen in `sources` eintragen.
    Bei ADHS und Gesundheit: evidenzbasiert, sachlich, auch bei Sexualität und Beziehung; keine individuellen Diagnosen oder Therapieanweisungen,
    aber konkrete, alltagstaugliche Einordnung. Prognosen (Welt in 5 bis 10 Jahren) als Szenarien mit Begründung, nicht als Gewissheit.
+   Reihe „AI risk“ (KI-Apokalypse, Vorbereitung): nüchtern und belegt. Die Bandbreite der Expertenmeinungen zeigen, weder Panik machen noch abwiegeln,
+   Unsicherheit klar benennen. Jede Folge endet mit etwas, das der Nutzer selbst tun kann (Fähigkeiten, Arbeit, Geld, Umgang mit der Sorge), nicht mit einem Schreckensbild.
 5. **Folge schreiben:** `content/<id>/lesson.mjs` (Format unten). `<id>` = `JJJJ-MM-TT-<bereich>-<nn>`, z. B. `2026-11-18-adhs-01`.
 6. **Sprechtext erzeugen:** `node tools/build.mjs <id> --narration`
 7. **Vertonen** mit den kostenlosen lokalen englischen Stimmen (Kokoro): einmal pro Container `pip install "sherpa-onnx<2" soundfile numpy`,
