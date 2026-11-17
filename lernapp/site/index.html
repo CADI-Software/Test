@@ -1,0 +1,679 @@
+<title>Kopfkino</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: eine Spalte, Handy zuerst. Die dunkle Tafel ist die Bühne, alles drumherum bleibt ruhig. */
+:root{
+  --bg:#eef1f8; --surface:#ffffff; --ink:#131a35; --muted:#586490; --line:#d8deee; --soft:#e2e7f5;
+  --accent:#2b47d6; --accent-ink:#ffffff; --good:#1c7f4b; --warn:#b3261e;
+  --ar-ki:#1297b4; --ar-adhs:#dc4f39; --ar-innovation:#c98a00; --ar-business:#23935a; --ar-bonus:#7453dd;
+  /* Tafel: eigene, feste Palette in beiden Themes (wie ein Video) */
+  --k-bg:#0f1830; --k-panel:#1a2647; --k-panel2:#2a3b70; --k-ink:#f3f5fc; --k-mut:#93a1cb;
+  --k-a:#5fd3ea; --k-b:#ffc857; --k-c:#ff8370; --k-d:#7fe0a3; --k-e:#b9a0ff;
+  --font-display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#080d1b; --surface:#111931; --ink:#eef1fb; --muted:#98a4ca; --line:#222c50; --soft:#19223f;
+    --accent:#8ea6ff; --accent-ink:#0a1024; --good:#6fd79a; --warn:#ff9485;
+    --ar-ki:#5fd3ea; --ar-adhs:#ff8370; --ar-innovation:#ffc857; --ar-business:#7fe0a3; --ar-bonus:#b9a0ff;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#080d1b; --surface:#111931; --ink:#eef1fb; --muted:#98a4ca; --line:#222c50; --soft:#19223f;
+  --accent:#8ea6ff; --accent-ink:#0a1024; --good:#6fd79a; --warn:#ff9485;
+  --ar-ki:#5fd3ea; --ar-adhs:#ff8370; --ar-innovation:#ffc857; --ar-business:#7fe0a3; --ar-bonus:#b9a0ff;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+.app{max-width:560px;margin:0 auto;padding-block:14px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+h1,h2,h3,p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:40px}
+.brand{font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.brand span{color:var(--accent)}
+.back{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px 8px 10px;font-weight:600;font-size:14px}
+.back svg{width:16px;height:16px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:12px}
+.sec>h2{font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-.01em}
+.note{color:var(--muted);font-size:14px}
+
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.dot.ki{background:var(--ar-ki)}.dot.adhs{background:var(--ar-adhs)}.dot.innovation{background:var(--ar-innovation)}.dot.business{background:var(--ar-business)}.dot.bonus{background:var(--ar-bonus)}
+
+/* Heute */
+.hero{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:14px;text-align:left;width:100%}
+.hero-title{font-family:var(--font-display);font-weight:800;font-size:27px;line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+.hero-body{display:flex;flex-direction:column;gap:8px;padding:2px 4px 4px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:14px;padding:14px 18px;font-weight:700;font-size:16px;width:100%}
+.cta svg{width:18px;height:18px}
+.poster{position:relative}
+.poster .bigplay{pointer-events:none}
+
+/* Tafel */
+.stage{position:relative;width:100%;max-width:min(100%,62vh);margin-inline:auto;aspect-ratio:1/1;background:var(--k-bg);border-radius:18px;overflow:hidden;border:1px solid var(--k-panel)}
+.stage svg.board{display:block;width:100%;height:100%}
+svg.board{font-family:var(--font-body);font-size:16px;fill:var(--k-ink)}
+:where(svg.board) path,:where(svg.board) polyline,:where(svg.board) line{fill:none}
+.board text{stroke:none}
+.board .fi{fill:var(--k-ink)}.board .fm{fill:var(--k-mut)}.board .fa{fill:var(--k-a)}.board .fb{fill:var(--k-b)}.board .fc{fill:var(--k-c)}.board .fd{fill:var(--k-d)}.board .fe{fill:var(--k-e)}
+.board .fn{fill:none}.board .fk{fill:var(--k-bg)}.board .fp{fill:var(--k-panel)}.board .fq{fill:var(--k-panel2)}
+.board .si,.board .sm,.board .sa,.board .sb,.board .sc,.board .sd,.board .se{stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.board .si{stroke:var(--k-ink)}.board .sm{stroke:var(--k-mut)}.board .sa{stroke:var(--k-a)}.board .sb{stroke:var(--k-b)}.board .sc{stroke:var(--k-c)}.board .sd{stroke:var(--k-d)}.board .se{stroke:var(--k-e)}
+.board .s1{stroke-width:1.5}.board .s3{stroke-width:4.5}.board .dash{stroke-dasharray:6 8}
+.board .ts{font-size:13px}.board .tm{font-size:16px}.board .tl{font-size:21px}.board .tx{font-size:30px}.board .tb{font-weight:700}
+.board .mid{text-anchor:middle}.board .end{text-anchor:end}
+.board [data-l]{opacity:0;transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.board [data-l].on{opacity:1}
+.board [data-fx="up"]{transform:translateY(14px)}
+.board [data-fx="up"].on{transform:none}
+.board [data-fx="pop"]{transform:scale(.4);transform-box:fill-box;transform-origin:center}
+.board [data-fx="pop"].on{transform:scale(1)}
+.board [data-fx="draw"]{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.2s ease,opacity .15s}
+.board [data-fx="draw"].on{stroke-dashoffset:0}
+.board [data-fx="state"]{opacity:1}
+.board.noanim *{transition:none!important}
+.board .scene{animation:sceneIn .4s ease both}
+@keyframes sceneIn{from{opacity:0}to{opacity:1}}
+.board .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+.board .wig{transform-box:fill-box;transform-origin:center;animation:wig 2.6s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(-28deg)}50%{transform:rotate(28deg)}}
+.board .spin{transform-box:fill-box;transform-origin:center;animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.board .flow{stroke-dasharray:6 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-14}}
+.board .blink{animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.board .float{animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.stage.paused .board .scene *{animation-play-state:paused}
+.stage-btn{position:absolute;inset:0;border:0;background:transparent;padding:0;display:grid;place-items:center}
+.bigplay{width:76px;height:76px;border-radius:50%;background:var(--k-ink);color:var(--k-bg);display:grid;place-items:center;transition:opacity .2s,transform .2s;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.bigplay svg{width:30px;height:30px;margin-left:4px}
+.stage:not(.fresh) .bigplay,.stage:not(.paused) .bigplay{opacity:0;transform:scale(.8)}
+.stage.poster-mode .bigplay{opacity:1;transform:none}
+.poster{cursor:pointer}
+
+/* Player */
+.player{display:flex;flex-direction:column;gap:12px}
+.cap{display:flex;flex-direction:column;gap:6px;min-height:118px}
+.cap-text{font-size:18px;line-height:1.42;font-weight:500;text-wrap:pretty}
+.scrub{position:relative;height:28px;display:flex;align-items:center;touch-action:none;cursor:pointer}
+.scrub-track{position:relative;flex:1;height:6px;border-radius:3px;background:var(--soft)}
+.scrub-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--accent);width:0}
+.scrub-tick{position:absolute;top:-3px;width:2px;height:12px;border-radius:1px;background:var(--bg)}
+.scrub-thumb{position:absolute;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--accent);border:3px solid var(--surface);left:0}
+.times{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ctrl{display:grid;grid-template-columns:1fr auto auto auto 1fr;align-items:center;gap:14px}
+.ctrl button{border:1px solid var(--line);background:var(--surface);border-radius:999px;height:48px;min-width:48px;display:grid;place-items:center;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+.ctrl button svg{width:22px;height:22px}
+.ctrl .play{width:66px;height:66px;background:var(--accent);color:var(--accent-ink);border:0}
+.ctrl .play svg{width:28px;height:28px}
+.ctrl .speed{justify-self:start;padding:0 14px}
+.ctrl .next{justify-self:end}
+.lesson-title{font-family:var(--font-display);font-weight:800;font-size:24px;line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+
+/* Karten, Listen */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:14px}
+.card h2,.card h3{font-family:var(--font-display);font-weight:800;font-size:19px}
+.q{display:flex;flex-direction:column;gap:8px}
+.q-label{font-size:14px;font-weight:600;color:var(--muted)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg button{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 6px;font-size:14px;font-weight:600;line-height:1.2;min-height:48px}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+textarea{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;min-height:76px;resize:vertical}
+.row-end{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:12px;padding:12px 18px;font-weight:700}
+.btn[disabled]{opacity:.45;cursor:default}
+.status{font-size:14px;color:var(--muted);min-width:0}
+.status.ok{color:var(--good);font-weight:600}.status.err{color:var(--warn);font-weight:600}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:7px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.list{display:flex;flex-direction:column;gap:8px;list-style:none;margin:0;padding:0}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 14px;text-align:left;width:100%}
+.item .dot{grid-row:1/3;align-self:start;margin-top:7px}
+.item-title{font-weight:600;line-height:1.3;min-width:0}
+.item-sub{grid-column:2;font-size:13px;color:var(--muted)}
+.item-flag{grid-row:1/3;grid-column:3;font-size:12px;font-weight:700;color:var(--good);white-space:nowrap}
+.plan li{display:flex;gap:10px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line)}
+.plan li:first-child{border-top:0;padding-top:0}
+.plan .dot{transform:translateY(-1px)}
+ol.take{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 16px}
+summary{font-weight:700;padding:14px 0;cursor:pointer}
+.tr{display:flex;flex-direction:column;gap:16px;padding-bottom:16px}
+.tr h4{margin:0 0 6px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tr button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:5px 8px;margin-left:-8px;border-radius:8px;line-height:1.45}
+.tr button.cur{background:var(--soft)}
+.src{margin:0;padding:0 0 16px 20px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){
+  .board .pulse,.board .wig,.board .spin,.board .flow,.board .blink,.board .float,.board .scene{animation:none}
+  .board [data-l]{transition-duration:.01s}
+}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">Kopf<span>kino</span></div>
+    <button class="back" id="back" type="button" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      Alle Folgen
+    </button>
+  </header>
+
+  <!-- Startseite -->
+  <main id="home" class="sec" style="gap:26px">
+    <section class="sec" id="today">
+      <div class="eyebrow" id="today-label">Neueste Folge</div>
+      <div class="hero" id="hero">
+        <p class="note" id="hero-empty">Folgen werden geladen …</p>
+      </div>
+    </section>
+
+    <section class="sec" id="all" hidden>
+      <h2>Alle Folgen</h2>
+      <div class="filters" id="filters" role="group" aria-label="Nach Themenbereich filtern"></div>
+      <ul class="list" id="list"></ul>
+    </section>
+
+    <section class="sec" id="plan-sec" hidden>
+      <h2>Als Nächstes geplant</h2>
+      <div class="card"><ul class="list plan" id="plan"></ul>
+      <p class="note">Die Reihenfolge passt sich an dein Feedback an.</p></div>
+    </section>
+
+    <section class="sec">
+      <h2>Themenwunsch</h2>
+      <form class="card" id="wish-form">
+        <label class="q-label" for="wish">Worüber willst du eine Folge sehen?</label>
+        <textarea id="wish" maxlength="600" placeholder="z. B. Wie funktioniert Attention genau? Oder: ADHS und Geld."></textarea>
+        <div class="row-end">
+          <span class="status" id="wish-status" role="status"></span>
+          <button class="btn" type="submit" id="wish-send">Wunsch senden</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Folge -->
+  <main id="lesson" class="sec" style="gap:22px" hidden>
+    <div class="player">
+      <div class="stage paused fresh" id="stage">
+        <svg class="board" id="board" viewBox="0 0 400 400" role="img" aria-label="Animierte Erklärgrafik"></svg>
+        <button class="stage-btn" id="stage-btn" type="button" aria-label="Abspielen oder pausieren">
+          <span class="bigplay"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
+        </button>
+      </div>
+      <div class="cap">
+        <div class="eyebrow" id="cap-scene"></div>
+        <p class="cap-text" id="cap-text"></p>
+      </div>
+      <div>
+        <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Position in der Folge" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="scrub-track" id="scrub-track"><div class="scrub-fill" id="scrub-fill"></div><div class="scrub-thumb" id="scrub-thumb"></div></div>
+        </div>
+        <div class="times"><span id="t-now">0:00</span><span id="t-all">0:00</span></div>
+      </div>
+      <div class="ctrl">
+        <button type="button" class="speed" id="speed" aria-label="Geschwindigkeit ändern">1×</button>
+        <button type="button" id="rew" aria-label="10 Sekunden zurück">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v5h5"/><path d="M4.6 14.5A8 8 0 1 0 6.3 6.3L4 10"/></svg>
+        </button>
+        <button type="button" class="play" id="play" aria-label="Abspielen">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="play-ico"><path d="M7 4l13 8-13 8z"/></svg>
+        </button>
+        <button type="button" id="fwd" aria-label="10 Sekunden vor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 5v5h-5"/><path d="M19.4 14.5A8 8 0 1 1 17.7 6.3L20 10"/></svg>
+        </button>
+        <button type="button" class="next" id="next" aria-label="Nächste Szene"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5l10 7-10 7z"/><rect x="16.5" y="5" width="2.6" height="14" rx="1"/></svg></button>
+      </div>
+      <p class="note" id="audio-note" hidden>Der Ton lässt sich gerade nicht laden. Die Folge läuft stumm mit Untertiteln weiter.</p>
+    </div>
+
+    <section class="sec">
+      <span class="chip" id="l-chip"></span>
+      <h1 class="lesson-title" id="l-title"></h1>
+      <p class="note" id="l-hook" style="font-size:15px"></p>
+    </section>
+
+    <form class="card" id="fb">
+      <h2>Wie war die Folge?</h2>
+      <div class="q"><span class="q-label">Thema</span>
+        <div class="seg" data-key="topic"><button type="button" data-v="mehr">Mehr davon</button><button type="button" data-v="ok">War okay</button><button type="button" data-v="weniger">Weniger davon</button></div></div>
+      <div class="q"><span class="q-label">Niveau</span>
+        <div class="seg" data-key="level"><button type="button" data-v="zu_einfach">Zu einfach</button><button type="button" data-v="passt">Genau richtig</button><button type="button" data-v="zu_schwer">Zu kompliziert</button></div></div>
+      <div class="q"><span class="q-label">Länge und Tempo</span>
+        <div class="seg" data-key="length"><button type="button" data-v="zu_kurz">Zu kurz</button><button type="button" data-v="passt">Passt</button><button type="button" data-v="zu_lang">Zu lang</button></div></div>
+      <div class="q"><label class="q-label" for="fb-note">Was hat gefehlt, was soll vertieft werden?</label>
+        <textarea id="fb-note" maxlength="1000" placeholder="Optional"></textarea></div>
+      <div class="row-end">
+        <span class="status" id="fb-status" role="status"></span>
+        <button class="btn" type="submit" id="fb-send" disabled>Feedback senden</button>
+      </div>
+    </form>
+
+    <section class="card" id="take-sec">
+      <h2>Zum Mitnehmen</h2>
+      <ol class="take" id="take"></ol>
+    </section>
+
+    <details id="tr-box"><summary>Mitlesen und springen</summary><div class="tr" id="tr"></div></details>
+    <details id="src-box"><summary>Quellen</summary><ul class="src" id="src"></ul></details>
+  </main>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const AREAS = {
+    ki: { name: 'KI und neuronale Netze', short: 'KI' },
+    adhs: { name: 'ADHS', short: 'ADHS' },
+    innovation: { name: 'Innovation', short: 'Innovation' },
+    business: { name: 'Business', short: 'Business' },
+    bonus: { name: 'Überraschung', short: 'Überraschung' },
+  };
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('kk:' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem('kk:' + k, JSON.stringify(v)); } catch {} },
+  };
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const fmt = (s) => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  const mins = (s) => Math.max(1, Math.round(s / 60)) + ' Min.';
+  const dateLong = (d) => { try { return new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(d + 'T12:00:00')); } catch { return d; } };
+  const dateShort = (d) => { try { return new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'short' }).format(new Date(d + 'T12:00:00')); } catch { return d; } };
+  const todayISO = () => { const n = new Date(); return n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0'); };
+  const getJSON = async (url) => { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); };
+  const chip = (area, extra) => { const c = el('span', 'chip'); c.append(el('span', 'dot ' + area), document.createTextNode((AREAS[area] ? AREAS[area].name : area) + (extra ? ' · ' + extra : ''))); return c; };
+
+  // ---------- Datenbank (Feedback, Fortschritt, Wünsche) ----------
+  let db = null;
+  const dbReady = (async () => {
+    try { db = (window.claude && window.claude.use) ? await window.claude.use('db') : null; } catch { db = null; }
+    return db;
+  })();
+  const seen = new Set(store.get('seen', []));
+  const rated = new Set(store.get('rated', []));
+
+  // ---------- Startseite ----------
+  let index = { lessons: [], upcoming: [] };
+  let filter = 'alle';
+
+  function setSvg(svg, scene, css) {
+    let st = document.getElementById('scene-css-' + svg.id);
+    if (!st) { st = document.createElement('style'); st.id = 'scene-css-' + svg.id; document.head.appendChild(st); }
+    st.textContent = (css || '').replace(/([^{}]+)\{/g, (m, sel) => sel.split(',').map((s) => '#' + svg.id + ' ' + s.trim()).join(',') + '{');
+    svg.innerHTML = '<g class="scene">' + scene + '</g>';
+    svg.querySelectorAll('[data-fx="draw"]').forEach((e) => e.setAttribute('pathLength', '1'));
+  }
+
+  async function renderHero() {
+    const hero = $('hero');
+    const first = index.lessons[0];
+    if (!first) { $('hero-empty').textContent = 'Die erste Folge erscheint in Kürze.'; return; }
+    $('today-label').textContent = first.date === todayISO() ? 'Heute · ' + dateLong(first.date) : 'Neueste Folge · ' + dateLong(first.date);
+    hero.textContent = '';
+    const stage = el('div', 'stage paused poster-mode poster');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'board noanim'); svg.setAttribute('viewBox', '0 0 400 400'); svg.id = 'poster'; svg.setAttribute('aria-hidden', 'true');
+    const overlay = el('span', 'stage-btn');
+    overlay.innerHTML = '<span class="bigplay"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>';
+    stage.append(svg, overlay);
+    const body = el('div', 'hero-body');
+    const meta = el('div', 'hero-meta');
+    meta.append(chip(first.area, first.series ? 'Folge ' + first.episode : ''), el('span', 'chip', mins(first.duration)));
+    body.append(meta, el('h1', 'hero-title', first.title), el('p', 'note', first.hook));
+    const cta = el('button', 'cta'); cta.type = 'button';
+    cta.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>';
+    cta.append(document.createTextNode(seen.has(first.id) ? 'Noch einmal ansehen' : 'Folge ansehen'));
+    const open = () => { location.hash = 'folge-' + first.id; };
+    cta.addEventListener('click', open); stage.addEventListener('click', open); stage.style.cursor = 'pointer';
+    hero.append(stage, body, cta);
+    try {
+      const l = await loadLesson(first.id);
+      const sc = l.scenes[Math.min(l.poster || 0, l.scenes.length - 1)];
+      setSvg(svg, sc.svg, sc.css);
+      svg.querySelectorAll('[data-l]').forEach((e) => { if (!e.hasAttribute('data-out')) e.classList.add('on'); });
+    } catch {}
+  }
+
+  function renderList() {
+    const list = $('list'); list.textContent = '';
+    const rows = index.lessons.filter((l) => filter === 'alle' || l.area === filter);
+    if (!rows.length) { list.append(el('li', 'note', 'In diesem Bereich gibt es noch keine Folge.')); return; }
+    for (const l of rows) {
+      const li = el('li'); const b = el('button', 'item'); b.type = 'button';
+      b.append(el('span', 'dot ' + l.area), el('span', 'item-title', l.title));
+      const flag = el('span', 'item-flag', rated.has(l.id) ? 'bewertet' : seen.has(l.id) ? 'gesehen' : '');
+      b.append(flag, el('span', 'item-sub', dateShort(l.date) + ' · ' + (AREAS[l.area] ? AREAS[l.area].short : l.area) + ' · ' + mins(l.duration)));
+      b.addEventListener('click', () => { location.hash = 'folge-' + l.id; });
+      li.append(b); list.append(li);
+    }
+  }
+
+  function renderFilters() {
+    const box = $('filters'); box.textContent = '';
+    const keys = ['alle', ...Object.keys(AREAS)];
+    for (const k of keys) {
+      const b = el('button'); b.type = 'button'; b.setAttribute('aria-pressed', String(filter === k));
+      if (k !== 'alle') b.append(el('span', 'dot ' + k));
+      b.append(document.createTextNode(k === 'alle' ? 'Alle' : AREAS[k].short));
+      b.addEventListener('click', () => { filter = k; store.set('filter', k); renderFilters(); renderList(); });
+      box.append(b);
+    }
+  }
+
+  function renderPlan() {
+    const ul = $('plan'); ul.textContent = '';
+    const up = index.upcoming || [];
+    $('plan-sec').hidden = !up.length;
+    for (const u of up) { const li = el('li'); li.append(el('span', 'dot ' + u.area), el('span', '', u.title)); ul.append(li); }
+  }
+
+  async function loadHome() {
+    try { index = await getJSON('lessons/index.json'); }
+    catch { $('hero-empty').textContent = 'Die Folgen lassen sich gerade nicht laden. Bitte Seite neu öffnen.'; return; }
+    filter = store.get('filter', 'alle'); if (filter !== 'alle' && !AREAS[filter]) filter = 'alle';
+    $('all').hidden = !index.lessons.length;
+    renderHero(); renderFilters(); renderList(); renderPlan();
+    dbReady.then(async (d) => {
+      if (!d) return;
+      try {
+        const [p, f] = await Promise.all([d.collection('progress').get(), d.collection('feedback').get()]);
+        p.docs.forEach((x) => seen.add(x.id)); f.docs.forEach((x) => rated.add(x.id));
+        store.set('seen', [...seen]); store.set('rated', [...rated]);
+        renderList();
+      } catch {}
+    });
+  }
+
+  $('wish-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = $('wish').value.trim(); const st = $('wish-status');
+    if (!text) { st.className = 'status err'; st.textContent = 'Schreib zuerst deinen Wunsch hinein.'; return; }
+    $('wish-send').disabled = true; st.className = 'status'; st.textContent = 'Wird gesendet …';
+    try {
+      const d = await dbReady; if (!d) throw new Error('db');
+      await d.collection('wishes').add({ text, at: new Date().toISOString() });
+      $('wish').value = ''; st.className = 'status ok'; st.textContent = 'Wunsch gespeichert. Er fließt in die Planung ein.';
+    } catch {
+      st.className = 'status err'; st.textContent = 'Speichern hat nicht geklappt. Schreib den Wunsch einfach in den Chat mit Claude.';
+    }
+    $('wish-send').disabled = false;
+  });
+
+  // ---------- Folge / Player ----------
+  const cache = new Map();
+  async function loadLesson(id) {
+    if (!cache.has(id)) cache.set(id, getJSON('lessons/' + id + '/lesson.json'));
+    try { return await cache.get(id); } catch (e) { cache.delete(id); throw e; }
+  }
+
+  const P = { l: null, audio: null, useAudio: false, pos: 0, playing: false, rate: 1, scene: -1, line: -1, els: [], raf: 0, last: 0, drag: false, flat: [], saved: 0, done: false, wake: null };
+  const stage = $('stage'), board = $('board');
+  const RATES = [1, 1.25, 1.5, 0.85];
+  const ICO_PLAY = '<path d="M7 4l13 8-13 8z"/>', ICO_PAUSE = '<path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/>';
+
+  function sceneAt(t) { const s = P.l.scenes; let i = 0; while (i + 1 < s.length && s[i + 1].t <= t) i++; return i; }
+  function lineAt(t) { const f = P.flat; let i = 0; while (i + 1 < f.length && f[i + 1].t <= t) i++; return i; }
+
+  function mountScene(i) {
+    const sc = P.l.scenes[i]; P.scene = i;
+    const end = i + 1 < P.l.scenes.length ? P.l.scenes[i + 1].t : P.l.duration;
+    board.classList.add('noanim');
+    setSvg(board, sc.svg, sc.css);
+    P.els = [...board.querySelectorAll('[data-l]')].map((e) => {
+      const l = Math.min(Number(e.dataset.l) || 0, sc.lines.length - 1);
+      const o = e.dataset.out == null ? null : Number(e.dataset.out);
+      return { e, on: sc.lines[l].t + (Number(e.dataset.d) || 0), off: o == null ? Infinity : (o < sc.lines.length ? sc.lines[o].t : end), state: false };
+    });
+    applyEls(P.pos - 0.35);
+    void board.getBoundingClientRect();
+    requestAnimationFrame(() => board.classList.remove('noanim'));
+  }
+  function applyEls(t) {
+    for (const x of P.els) { const s = t >= x.on && t < x.off; if (s !== x.state) { x.state = s; x.e.classList.toggle('on', s); } }
+  }
+
+  function render() {
+    const t = P.pos, l = P.l;
+    const si = sceneAt(t);
+    if (si !== P.scene) mountScene(si); else applyEls(t);
+    const li = lineAt(t);
+    if (li !== P.line) {
+      P.line = li; const f = P.flat[li];
+      $('cap-scene').textContent = (f.s + 1) + ' / ' + l.scenes.length + ' · ' + l.scenes[f.s].title;
+      $('cap-text').textContent = f.text;
+      const tr = $('tr'); const old = tr.querySelector('.cur'); if (old) old.classList.remove('cur');
+      const cur = tr.querySelector('[data-i="' + li + '"]'); if (cur) cur.classList.add('cur');
+    }
+    stage.classList.toggle('fresh', t < 0.3);
+    if (!P.drag) paintScrub(t);
+    if (!P.done && t >= l.duration * 0.92) markDone();
+    if (performance.now() - P.saved > 4000) { P.saved = performance.now(); store.set('pos:' + l.id, Math.round(t)); }
+  }
+  function paintScrub(t) {
+    const pct = Math.min(100, (t / P.l.duration) * 100);
+    $('scrub-fill').style.width = pct + '%'; $('scrub-thumb').style.left = pct + '%';
+    $('t-now').textContent = fmt(t); $('scrub').setAttribute('aria-valuenow', String(Math.round(pct)));
+    $('scrub').setAttribute('aria-valuetext', fmt(t) + ' von ' + fmt(P.l.duration));
+  }
+
+  function tick(now) {
+    if (!P.playing) return;
+    if (P.useAudio) {
+      P.pos = P.audio.currentTime;
+      if (P.audio.ended) { P.pos = P.l.duration; render(); return finish(); }
+    } else {
+      P.pos += Math.min(0.25, (now - P.last) / 1000) * P.rate;
+      if (P.pos >= P.l.duration) { P.pos = P.l.duration; render(); return finish(); }
+    }
+    P.last = now; render();
+    P.raf = requestAnimationFrame(tick);
+  }
+
+  function setPlaying(on) {
+    P.playing = on;
+    stage.classList.toggle('paused', !on);
+    $('play-ico').innerHTML = on ? ICO_PAUSE : ICO_PLAY;
+    $('play').setAttribute('aria-label', on ? 'Pausieren' : 'Abspielen');
+    if (on) { P.last = performance.now(); cancelAnimationFrame(P.raf); P.raf = requestAnimationFrame(tick); wake(true); }
+    else { cancelAnimationFrame(P.raf); wake(false); if (P.l) store.set('pos:' + P.l.id, Math.round(P.pos)); }
+  }
+  async function wake(on) {
+    try {
+      if (on && navigator.wakeLock && !P.wake) { P.wake = await navigator.wakeLock.request('screen'); P.wake.addEventListener('release', () => { P.wake = null; }); }
+      else if (!on && P.wake) { await P.wake.release(); P.wake = null; }
+    } catch { P.wake = null; }
+  }
+  function play() {
+    if (!P.l) return;
+    if (P.pos >= P.l.duration - 0.2) seek(0);
+    if (P.useAudio) {
+      P.audio.playbackRate = P.rate;
+      const p = P.audio.play();
+      if (p && p.catch) p.catch(() => { if (P.audio && P.audio.error) audioFailed(); else setPlaying(false); });
+    }
+    setPlaying(true);
+  }
+  function pause() { if (P.useAudio && P.audio) P.audio.pause(); setPlaying(false); }
+  function toggle() { P.playing ? pause() : play(); }
+  function seek(t) {
+    if (!P.l) return;
+    P.pos = Math.max(0, Math.min(P.l.duration, t));
+    if (P.useAudio) { try { P.audio.currentTime = P.pos; } catch {} }
+    render();
+  }
+  function finish() {
+    if (P.useAudio && P.audio) P.audio.pause();
+    setPlaying(false); store.set('pos:' + P.l.id, 0);
+    $('cap-text').textContent = 'Geschafft. Sag mir unten kurz, wie die Folge war.';
+    $('fb').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function audioFailed() {
+    if (!P.useAudio) return;
+    P.useAudio = false; $('audio-note').hidden = false;
+    if (P.playing) { P.last = performance.now(); }
+  }
+  async function markDone() {
+    P.done = true; const id = P.l.id;
+    if (seen.has(id)) return;
+    seen.add(id); store.set('seen', [...seen]);
+    try { const d = await dbReady; if (d) await d.doc('progress/' + id).set({ done: true, at: new Date().toISOString() }); } catch {}
+  }
+
+  function teardown() {
+    if (P.playing) pause();
+    if (P.audio) { try { P.audio.pause(); P.audio.removeAttribute('src'); P.audio.load(); } catch {} P.audio = null; }
+    P.l = null; P.scene = -1; P.line = -1; P.els = [];
+  }
+
+  async function openLesson(id) {
+    teardown();
+    $('home').hidden = true; $('lesson').hidden = false; $('back').hidden = false;
+    window.scrollTo(0, 0);
+    board.innerHTML = ''; $('cap-scene').textContent = ''; $('cap-text').textContent = 'Folge wird geladen …';
+    $('audio-note').hidden = true;
+    let l;
+    try { l = await loadLesson(id); }
+    catch { $('cap-text').textContent = 'Diese Folge lässt sich gerade nicht laden.'; return; }
+    if (location.hash !== '#folge-' + id) return;
+    P.l = l; P.done = seen.has(id); P.flat = [];
+    l.scenes.forEach((s, si) => s.lines.forEach((x, k) => P.flat.push({ t: x.t, text: x.text, s: si, k })));
+    P.rate = store.get('rate', 1); if (!RATES.includes(P.rate)) P.rate = 1;
+    $('speed').textContent = String(P.rate).replace('.', ',') + '×';
+    const last = store.get('pos:' + id, 0);
+    P.pos = last > 5 && last < l.duration - 15 ? last : 0;
+
+    $('l-chip').replaceChildren(...chip(l.area, l.series ? l.series + ', Folge ' + l.episode : '').childNodes);
+    $('l-title').textContent = l.title; $('l-hook').textContent = l.hook;
+    $('t-all').textContent = fmt(l.duration);
+    const track = $('scrub-track'); track.querySelectorAll('.scrub-tick').forEach((x) => x.remove());
+    l.scenes.slice(1).forEach((s) => { const k = el('div', 'scrub-tick'); k.style.left = 'calc(' + (s.t / l.duration) * 100 + '% - 1px)'; track.insertBefore(k, $('scrub-thumb')); });
+
+    const take = $('take'); take.textContent = ''; (l.takeaways || []).forEach((x) => take.append(el('li', '', x)));
+    $('take-sec').hidden = !(l.takeaways || []).length;
+    const tr = $('tr'); tr.textContent = ''; let n = 0;
+    l.scenes.forEach((s) => {
+      const box = el('div'); box.append(el('h4', '', s.title));
+      s.lines.forEach((x) => { const b = el('button', '', x.text); b.type = 'button'; b.dataset.i = String(n++); b.addEventListener('click', () => { seek(x.t + 0.01); if (!P.playing) play(); window.scrollTo({ top: 0, behavior: 'smooth' }); }); box.append(b); });
+      tr.append(box);
+    });
+    const src = $('src'); src.textContent = ''; (l.sources || []).forEach((x) => src.append(el('li', '', x)));
+    $('src-box').hidden = !(l.sources || []).length;
+
+    P.useAudio = false;
+    if (l.audio) {
+      const a = new Audio(); a.preload = 'auto'; a.src = 'lessons/' + id + '/' + l.audio; P.audio = a; P.useAudio = true;
+      a.addEventListener('error', audioFailed);
+      a.addEventListener('loadedmetadata', () => { if (P.pos > 0) { try { a.currentTime = P.pos; } catch {} } });
+      a.addEventListener('pause', () => { if (P.playing && !a.ended && P.useAudio) setPlaying(false); });
+      a.addEventListener('play', () => { if (!P.playing && P.useAudio) setPlaying(true); });
+      try {
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({ title: l.title, artist: 'Kopfkino', album: l.series || '' });
+          navigator.mediaSession.setActionHandler('play', play); navigator.mediaSession.setActionHandler('pause', pause);
+          navigator.mediaSession.setActionHandler('seekbackward', () => seek(P.pos - 10)); navigator.mediaSession.setActionHandler('seekforward', () => seek(P.pos + 10));
+        }
+      } catch {}
+    }
+    render();
+    loadFeedback(id);
+  }
+
+  $('stage-btn').addEventListener('click', toggle);
+  $('play').addEventListener('click', toggle);
+  $('rew').addEventListener('click', () => seek(P.pos - 10));
+  $('fwd').addEventListener('click', () => seek(P.pos + 10));
+  $('next').addEventListener('click', () => { if (!P.l) return; const i = sceneAt(P.pos); if (i + 1 < P.l.scenes.length) seek(P.l.scenes[i + 1].t + 0.01); });
+  $('speed').addEventListener('click', () => {
+    P.rate = RATES[(RATES.indexOf(P.rate) + 1) % RATES.length]; store.set('rate', P.rate);
+    $('speed').textContent = String(P.rate).replace('.', ',') + '×';
+    if (P.audio) P.audio.playbackRate = P.rate;
+  });
+  const scrub = $('scrub');
+  const scrubT = (e) => { const r = $('scrub-track').getBoundingClientRect(); return Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * (P.l ? P.l.duration : 0); };
+  scrub.addEventListener('pointerdown', (e) => { if (!P.l) return; P.drag = true; try { scrub.setPointerCapture(e.pointerId); } catch {} paintScrub(scrubT(e)); });
+  scrub.addEventListener('pointermove', (e) => { if (P.drag) paintScrub(scrubT(e)); });
+  const dragEnd = (e) => { if (!P.drag) return; P.drag = false; seek(scrubT(e)); };
+  scrub.addEventListener('pointerup', dragEnd);
+  scrub.addEventListener('pointercancel', () => { P.drag = false; if (P.l) paintScrub(P.pos); });
+  scrub.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { seek(P.pos - 5); e.preventDefault(); } if (e.key === 'ArrowRight') { seek(P.pos + 5); e.preventDefault(); } });
+  document.addEventListener('keydown', (e) => {
+    if ($('lesson').hidden || !P.l) return;
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'BUTTON' || tag === 'SUMMARY') return;
+    if (e.key === ' ') { toggle(); e.preventDefault(); }
+  });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && P.playing) { P.last = performance.now(); wake(true); } });
+
+  // ---------- Feedback ----------
+  const fb = { topic: '', level: '', length: '' };
+  function paintFb() {
+    document.querySelectorAll('#fb .seg').forEach((seg) => seg.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(fb[seg.dataset.key] === b.dataset.v))));
+    $('fb-send').disabled = !(fb.topic || fb.level || fb.length || $('fb-note').value.trim());
+  }
+  document.querySelectorAll('#fb .seg').forEach((seg) => seg.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    fb[seg.dataset.key] = fb[seg.dataset.key] === b.dataset.v ? '' : b.dataset.v;
+    $('fb-status').textContent = ''; paintFb();
+  }));
+  $('fb-note').addEventListener('input', paintFb);
+  async function loadFeedback(id) {
+    const local = store.get('fb:' + id, null) || {};
+    fb.topic = local.topic || ''; fb.level = local.level || ''; fb.length = local.length || '';
+    $('fb-note').value = local.note || ''; $('fb-status').className = 'status'; $('fb-status').textContent = ''; paintFb();
+    try {
+      const d = await dbReady; if (!d) return;
+      const snap = await d.doc('feedback/' + id).get();
+      if (!snap.exists || !P.l || P.l.id !== id) return;
+      const x = snap.data();
+      fb.topic = x.topic || ''; fb.level = x.level || ''; fb.length = x.length || ''; $('fb-note').value = x.note || '';
+      $('fb-status').className = 'status'; $('fb-status').textContent = 'Dein Feedback ist gespeichert. Du kannst es ändern.'; paintFb();
+    } catch {}
+  }
+  $('fb').addEventListener('submit', async (e) => {
+    e.preventDefault(); if (!P.l) return;
+    const id = P.l.id, st = $('fb-status');
+    const data = { lesson: id, title: P.l.title, area: P.l.area, topic: fb.topic, level: fb.level, length: fb.length, note: $('fb-note').value.trim(), at: new Date().toISOString() };
+    store.set('fb:' + id, data);
+    $('fb-send').disabled = true; st.className = 'status'; st.textContent = 'Wird gesendet …';
+    try {
+      const d = await dbReady; if (!d) throw new Error('db');
+      await d.doc('feedback/' + id).set(data);
+      rated.add(id); store.set('rated', [...rated]);
+      st.className = 'status ok'; st.textContent = 'Gespeichert. Danke, das fließt in die nächsten Folgen ein.';
+    } catch {
+      st.className = 'status err'; st.textContent = 'Speichern hat nicht geklappt. Schreib dein Feedback einfach in den Chat mit Claude.';
+    }
+    $('fb-send').disabled = false;
+  });
+
+  // ---------- Navigation ----------
+  let homeLoaded = false;
+  function route() {
+    const m = /^#folge-([a-z0-9-]+)$/.exec(location.hash);
+    if (m) { openLesson(m[1]); return; }
+    teardown();
+    $('lesson').hidden = true; $('home').hidden = false; $('back').hidden = true;
+    if (!homeLoaded) { homeLoaded = true; loadHome(); } else { renderHero(); renderList(); }
+    window.scrollTo(0, 0);
+  }
+  $('back').addEventListener('click', () => { location.hash = ''; });
+  window.kopfkino = { seek, lesson: () => P.l };
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>

@@ -1,0 +1,10 @@
+{
+  "upcoming": [
+    { "area": "adhs", "title": "Kein Mangel an Aufmerksamkeit: was im ADHS-Gehirn anders reguliert wird" },
+    { "area": "innovation", "title": "Festkörperbatterien: warum sie so schwer zu bauen sind" },
+    { "area": "business", "title": "Positionierung: warum der kleinere Markt der größere Hebel ist" },
+    { "area": "ki", "title": "Wie ein Netz lernt: Fehler, Gefälle, Backpropagation" },
+    { "area": "adhs", "title": "Zeitblindheit: warum es nur „jetzt“ und „nicht jetzt“ gibt" },
+    { "area": "bonus", "title": "Überraschungsthema aus deinem Feedback" }
+  ]
+}

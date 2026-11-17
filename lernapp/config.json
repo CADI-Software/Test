@@ -1,0 +1,25 @@
+{
+  "artifactUrl": "https://claude.ai/artifact/6MeTfc5pGHaTauLf4rNm9d",
+  "timezone": "Europe/Berlin",
+  "voice": "piper",
+  "voiceNote": "piper = kostenlose lokale Stimme. magnific = Premium-Stimme über das Magnific-Konto (ca. 200 Credits je 1.000 Zeichen, eine Folge ca. 1.500 bis 2.000 Credits). Nur auf magnific stellen, wenn der Nutzer das ausdrücklich bestätigt hat.",
+  "magnific": {
+    "voiceId": 1156,
+    "voiceName": "Lukas Brandt",
+    "model": "eleven_v4",
+    "folderReference": "d10ee74f-88f3-4dc7-9281-aba2f8b7c6be",
+    "downloadHost": "pikaso.cdnpk.net"
+  },
+  "piper": {
+    "modelUrl": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-de_DE-thorsten-high.tar.bz2",
+    "pip": "sherpa-onnx<2 soundfile numpy",
+    "speed": 0.9
+  },
+  "areas": {
+    "ki": "KI und neuronale Netze: Funktionsweise, Technik dahinter, Neues, Ausblick auf 5 bis 10 Jahre",
+    "adhs": "ADHS: Ursachen, Neurobiologie, Auswirkungen auf alle Lebensbereiche, auch Liebe, Sexualität, Fetischismus",
+    "innovation": "Innovation: aktuelle Erfindungen, die die Zukunft prägen, und wie sie funktionieren",
+    "business": "Business: Firma groß machen, Strategien und Erfahrungen anderer Gründer",
+    "bonus": "Überraschung: Themen, die aufgrund des Feedbacks vermutlich interessieren"
+  }
+}

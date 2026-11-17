@@ -1,0 +1,5 @@
+content/*/audio/
+content/*/narration/
+content/*/narration.json
+site/lessons/*/audio.mp3
+node_modules/

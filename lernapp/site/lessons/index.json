@@ -1,0 +1,42 @@
+{
+ "lessons": [
+  {
+   "id": "2026-11-17-ki-01",
+   "date": "2026-11-17",
+   "area": "ki",
+   "series": "KI verstehen",
+   "episode": 1,
+   "title": "Was ein neuronales Netz wirklich rechnet",
+   "hook": "Keine Datenbank, keine Regeln: nur gewichten, addieren, knicken. Und warum ausgerechnet der Knick alles möglich macht.",
+   "duration": 437.21,
+   "audio": true
+  }
+ ],
+ "upcoming": [
+  {
+   "area": "adhs",
+   "title": "Kein Mangel an Aufmerksamkeit: was im ADHS-Gehirn anders reguliert wird"
+  },
+  {
+   "area": "innovation",
+   "title": "Festkörperbatterien: warum sie so schwer zu bauen sind"
+  },
+  {
+   "area": "business",
+   "title": "Positionierung: warum der kleinere Markt der größere Hebel ist"
+  },
+  {
+   "area": "ki",
+   "title": "Wie ein Netz lernt: Fehler, Gefälle, Backpropagation"
+  },
+  {
+   "area": "adhs",
+   "title": "Zeitblindheit: warum es nur „jetzt“ und „nicht jetzt“ gibt"
+  },
+  {
+   "area": "bonus",
+   "title": "Überraschungsthema aus deinem Feedback"
+  }
+ ],
+ "updated": "2026-11-17T08:03:38.746Z"
+}
