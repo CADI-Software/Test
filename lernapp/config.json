@@ -2,14 +2,7 @@
   "artifactUrl": "https://claude.ai/artifact/6MeTfc5pGHaTauLf4rNm9d",
   "timezone": "Europe/Berlin",
   "voice": "piper",
-  "voiceNote": "piper = kostenlose lokale Stimme. magnific = Premium-Stimme über das Magnific-Konto (ca. 200 Credits je 1.000 Zeichen, eine Folge ca. 1.500 bis 2.000 Credits). Nur auf magnific stellen, wenn der Nutzer das ausdrücklich bestätigt hat.",
-  "magnific": {
-    "voiceId": 1156,
-    "voiceName": "Lukas Brandt",
-    "model": "eleven_v4",
-    "folderReference": "d10ee74f-88f3-4dc7-9281-aba2f8b7c6be",
-    "downloadHost": "pikaso.cdnpk.net"
-  },
+  "voiceNote": "Es wird ausschließlich die kostenlose lokale Stimme (Piper) verwendet. Der Nutzer hat ausdrücklich untersagt, Magnific zu verwenden: keine Magnific-Werkzeuge aufrufen, keine Credits ausgeben.",
   "piper": {
     "modelUrl": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-de_DE-thorsten-high.tar.bz2",
     "pip": "sherpa-onnx<2 soundfile numpy",

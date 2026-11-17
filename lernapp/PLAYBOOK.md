@@ -33,13 +33,11 @@ Dieses Dokument beschreibt, wie eine Folge entsteht. Einstellungen stehen in `co
    aber konkrete, alltagstaugliche Einordnung. Prognosen (Welt in 5 bis 10 Jahren) als Szenarien mit Begründung, nicht als Gewissheit.
 5. **Folge schreiben:** `content/<id>/lesson.mjs` (Format unten). `<id>` = `JJJJ-MM-TT-<bereich>-<nn>`, z. B. `2026-11-18-adhs-01`.
 6. **Sprechtext erzeugen:** `node tools/build.mjs <id> --narration`
-7. **Vertonen** (je nach `config.json` → `voice`):
-   - `piper` (kostenlos): einmal pro Container `pip install "sherpa-onnx<2" soundfile numpy`, Modell von `piper.modelUrl` laden und entpacken,
-     dann `PIPER_DIR=<entpackter Ordner> python3 tools/tts_piper.py <id>`. Liefert exakte Zeilenzeiten.
-   - `magnific` (Premium): je Szene den Inhalt von `content/<id>/narration/sNN.txt` an `audio_tts` geben (`voiceId`, `model`, `folderReference` aus `config.json`),
-     mit `creations_wait` abwarten, die `url` per `curl` nach `content/<id>/audio/sNN.mp3` laden. Braucht Netzfreigabe für `magnific.downloadHost`.
-     Schlägt Erzeugen oder Laden fehl: auf `piper` ausweichen und das im Chat erwähnen.
-8. **Bauen:** `VOICE=<piper-thorsten|magnific-lukas-brandt> node tools/build.mjs <id>`
+7. **Vertonen** mit der kostenlosen lokalen Stimme (Piper): einmal pro Container `pip install "sherpa-onnx<2" soundfile numpy`,
+   Modell von `piper.modelUrl` (siehe `config.json`) laden und entpacken, dann `PIPER_DIR=<entpackter Ordner> python3 tools/tts_piper.py <id>`.
+   Liefert exakte Zeilenzeiten. **Kein Magnific verwenden** (vom Nutzer ausdrücklich untersagt), auch nicht als Ausweichlösung,
+   und auch sonst keine kostenpflichtigen Dienste ohne ausdrückliche Zustimmung im Chat.
+8. **Bauen:** `VOICE=piper-thorsten node tools/build.mjs <id>`
 9. **Ansehen:** `node tools/preview.cjs <id> <scratchpad>/preview` und die Bilder `m1.png …` wirklich öffnen.
    Überlappende Schrift, abgeschnittene Texte, leere Tafeln und falsche Reihenfolgen beheben, dann neu bauen. Höchstens zwei Korrekturrunden.
 10. **Plan pflegen:** `content/plan.json` aktualisieren (heutiges Thema raus, 5 bis 6 kommende Themen drin, an Feedback angepasst), danach Schritt 8 wiederholen,
