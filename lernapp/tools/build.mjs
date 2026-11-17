@@ -51,7 +51,22 @@ const scenes = (lesson.scenes || []).map((s, si) => {
   }
   need(!/<script|\son\w+=|javascript:|<foreignObject|<image|href=/i.test(svg), `Szene ${si + 1}: SVG enthält nicht erlaubte Elemente (script, Events, Bilder, Links)`);
   need(!/url\(|@import|expression\(/i.test(s.css || ''), `Szene ${si + 1}: css darf nichts nachladen`);
-  return { title: s.title, svg: svg.replace(/\n\s*/g, '\n').trim(), css: s.css || '', lines };
+  let quiz;
+  if (s.quiz) {
+    const q = s.quiz, o = q.options || [];
+    need(q.q && q.q.length <= 170, `Szene ${si + 1}: Frage fehlt oder ist länger als 170 Zeichen`);
+    need(o.length >= 3 && o.length <= 4, `Szene ${si + 1}: Frage braucht 3 oder 4 Antworten`);
+    need(o.filter((x) => x.correct).length === 1, `Szene ${si + 1}: genau eine Antwort muss correct: true haben`);
+    need(o.every((x) => x.text && x.text.length <= 95 && x.why && x.why.length >= 40), `Szene ${si + 1}: jede Antwort braucht text (höchstens 95 Zeichen) und why (mindestens 40 Zeichen)`);
+    need(q.explain && q.explain.length >= 250, `Szene ${si + 1}: explain fehlt oder ist zu kurz (ausführliche Erklärung, mindestens 250 Zeichen)`);
+    need(si < lesson.scenes.length - 1, 'Keine Frage an der letzten Szene');
+    // Reihenfolge reproduzierbar mischen, damit die richtige Antwort nicht immer an derselben Stelle steht
+    let seed = [...(id + ':' + si)].reduce((n, c) => (n * 31 + c.charCodeAt(0)) >>> 0, 7);
+    const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const mixed = o.map((x) => ({ x, k: rnd() })).sort((p, r) => p.k - r.k).map(({ x }) => ({ text: x.text, why: x.why, ...(x.correct ? { correct: true } : {}) }));
+    quiz = { q: q.q, options: mixed, explain: q.explain };
+  }
+  return { title: s.title, svg: svg.replace(/\n\s*/g, '\n').trim(), css: s.css || '', lines, ...(quiz ? { quiz } : {}) };
 });
 
 // SVG-Wohlgeformtheit grob prüfen (Tag-Balance)
@@ -65,6 +80,8 @@ scenes.forEach((s, si) => {
 });
 const termCount = scenes.reduce((n, s) => n + s.lines.reduce((m, l) => m + (l.de ? l.de.length : 0), 0), 0);
 if (termCount < 6) errors.push(`nur ${termCount} deutsche Fachbegriffe (de: [[englisch, deutsch]] an den Zeilen); mindestens 6 je Folge`);
+const quizCount = scenes.filter((s) => s.quiz).length;
+if (quizCount < 2 || quizCount > 4) errors.push(`${quizCount} Verständnisfragen; 2 bis 4 je Folge (quiz an der Szene)`);
 scenes.forEach((s, si) => { const n = s.lines.reduce((m, l) => m + (l.de ? l.de.length : 0), 0); if (n > 3) errors.push(`Szene ${si + 1}: ${n} Fachbegriffe, höchstens 3 je Szene`); });
 if (errors.length) { console.error('Fehler:\n- ' + errors.join('\n- ')); process.exit(1); }
 

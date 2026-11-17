@@ -132,6 +132,28 @@ svg.board{font-family:var(--font-body);font-size:16px;fill:var(--k-ink)}
   .player.fs .scrubwrap{grid-column:2;grid-row:3;padding:0 16px}
   .player.fs .ctrl{grid-column:2;grid-row:4;padding:4px 16px 0}
 }
+.scrub-tick.q{background:var(--k-b);top:-4px;height:14px}
+/* Verständnisfrage: legt sich über den Player, dunkel wie die Tafel */
+.quiz{--muted:var(--k-mut);--accent:var(--k-a);--accent-ink:var(--k-bg);--line:var(--k-panel2);position:absolute;inset:0;z-index:60;background:var(--k-bg);color:var(--k-ink);border-radius:18px;overflow-y:auto;display:flex}
+.player.fs .quiz{border-radius:0;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+@media (max-width:600px) and (orientation:portrait) and (min-height:700px){
+  .player:not(.fs) .quiz{left:calc(-1*var(--gl));right:calc(-1*var(--gr));border-radius:0}
+}
+.quiz-in{margin:auto;width:100%;max-width:540px;padding:22px 18px;display:flex;flex-direction:column;gap:14px}
+.quiz-q{font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.quiz-opts{display:flex;flex-direction:column;gap:10px}
+.quiz-opts button{width:100%;text-align:left;background:var(--k-panel);border:2px solid var(--k-panel2);color:var(--k-ink);border-radius:14px;padding:13px 14px;font-size:16px;line-height:1.35;font-weight:500;min-height:54px}
+.quiz-opts button.ok{border-color:var(--k-d);background:rgba(127,224,163,.16)}
+.quiz-opts button.no{border-color:var(--k-c);background:rgba(255,131,112,.12);color:var(--k-mut)}
+.quiz-opts button[disabled]{cursor:default}
+.quiz-fb{border-radius:14px;padding:14px;background:var(--k-panel);font-size:15px;line-height:1.5;display:flex;flex-direction:column;gap:10px}
+.quiz-fb strong.ok{color:var(--k-d)}
+.quiz-fb strong.no{color:var(--k-c)}
+.quiz-fb .hint{color:var(--k-mut);font-size:14px}
+.quiz-act{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+.quiz-act button{border-radius:12px;padding:13px 16px;font-weight:700;min-height:48px}
+.quiz-sec{background:transparent;border:1.5px solid var(--k-panel2);color:var(--k-ink)}
+.quiz-skip{align-self:center;background:transparent;border:0;color:var(--k-mut);font-size:14px;padding:8px 12px;text-decoration:underline}
 .gloss{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
 .gloss li{display:contents}
 .gloss span{color:var(--muted)}
@@ -144,7 +166,7 @@ svg.board{font-family:var(--font-body);font-size:16px;fill:var(--k-ink)}
 .poster{cursor:pointer}
 
 /* Player */
-.player{display:flex;flex-direction:column;gap:12px}
+.player{position:relative;display:flex;flex-direction:column;gap:12px}
 .cap{display:flex;flex-direction:column;gap:6px;min-height:118px}
 .cap-text{font-size:18px;line-height:1.42;font-weight:500;text-wrap:pretty}
 .scrub{position:relative;height:28px;display:flex;align-items:center;touch-action:none;cursor:pointer}
@@ -283,6 +305,19 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
         <button type="button" class="next" id="next" aria-label="Nächste Szene"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5l10 7-10 7z"/><rect x="16.5" y="5" width="2.6" height="14" rx="1"/></svg></button>
       </div>
       <p class="note" id="audio-note" hidden>Der Ton lässt sich gerade nicht laden. Die Folge läuft stumm mit Untertiteln weiter.</p>
+      <div class="quiz" id="quiz" role="dialog" aria-modal="true" aria-labelledby="quiz-q" hidden>
+        <div class="quiz-in">
+          <div class="eyebrow">Kurze Frage</div>
+          <h2 class="quiz-q" id="quiz-q"></h2>
+          <div class="quiz-opts" id="quiz-opts"></div>
+          <div class="quiz-fb" id="quiz-fb" role="status" hidden></div>
+          <div class="quiz-act" id="quiz-act" hidden>
+            <button type="button" class="quiz-sec" id="quiz-again">Szene nochmal ansehen</button>
+            <button type="button" class="btn" id="quiz-next">Weiter</button>
+          </div>
+          <button type="button" class="quiz-skip" id="quiz-skip">Frage überspringen</button>
+        </div>
+      </div>
     </div>
 
     <section class="sec">
@@ -470,6 +505,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
   }
 
   const P = { l: null, audio: null, useAudio: false, pos: 0, playing: false, rate: 1, scene: -1, line: -1, els: [], raf: 0, last: 0, drag: false, flat: [], saved: 0, done: false, wake: null };
+  P.quizzes = []; P.quiz = null; P.quizRes = {}; P.quizWrite = Promise.resolve();
   const stage = $('stage'), board = $('board');
   const RATES = [1, 1.25, 1.5, 0.85];
   const ICO_PLAY = '<path d="M7 4l13 8-13 8z"/>', ICO_PAUSE = '<path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/>';
@@ -536,14 +572,17 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
 
   function tick(now) {
     if (!P.playing) return;
+    const prev = P.pos;
     if (P.useAudio) {
-      P.pos = P.audio.currentTime;
+      if (P.audio.readyState >= 1 && !P.audio.seeking) P.pos = P.audio.currentTime;
       if (P.audio.ended) { P.pos = P.l.duration; render(); return finish(); }
     } else {
       P.pos += Math.min(0.25, (now - P.last) / 1000) * P.rate;
       if (P.pos >= P.l.duration) { P.pos = P.l.duration; render(); return finish(); }
     }
     P.last = now; render();
+    const qz = P.quizzes.find((q) => !q.done && prev < q.t && P.pos >= q.t && P.pos - prev < 1.5);
+    if (qz) return openQuiz(qz);
     P.raf = requestAnimationFrame(tick);
   }
 
@@ -563,6 +602,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
   }
   function play() {
     if (!P.l) return;
+    if (P.quiz) closeQuiz();
     if (P.pos >= P.l.duration - 0.2) seek(0);
     if (P.useAudio) {
       P.audio.playbackRate = P.rate;
@@ -576,8 +616,20 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
   function seek(t) {
     if (!P.l) return;
     P.pos = Math.max(0, Math.min(P.l.duration, t));
-    if (P.useAudio) { try { P.audio.currentTime = P.pos; } catch {} }
+    if (P.useAudio) {
+      const was = P.playing;
+      const swapped = swapAudio();
+      try { P.audio.currentTime = P.pos; } catch {}
+      if (swapped && was) { const r = P.audio.play(); if (r && r.catch) r.catch(() => {}); }
+    }
     render();
+  }
+  function swapAudio() {
+    if (!P.audio || !P.blobUrl || P.swapped) return false;
+    P.swapped = true;
+    P.audio.src = P.blobUrl; P.audio.playbackRate = P.rate;
+    try { P.audio.currentTime = P.pos; } catch {}
+    return true;
   }
   function finish() {
     if (P.useAudio && P.audio) P.audio.pause();
@@ -598,6 +650,50 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     try { const d = await dbReady; if (d) await d.doc('progress/' + id).set({ done: true, at: new Date().toISOString() }); } catch {}
   }
 
+  // ---------- Verständnisfragen ----------
+  function openQuiz(q) {
+    pause();
+    P.quiz = q;
+    $('quiz-q').textContent = q.quiz.q;
+    const box = $('quiz-opts'); box.textContent = '';
+    $('quiz-fb').hidden = true; $('quiz-act').hidden = true; $('quiz-skip').hidden = false;
+    q.quiz.options.forEach((o) => {
+      const b = el('button', '', o.text); b.type = 'button';
+      b.addEventListener('click', () => answerQuiz(q, o, b));
+      box.append(b);
+    });
+    $('quiz').hidden = false; $('quiz').scrollTop = 0;
+  }
+  function answerQuiz(q, o, b) {
+    const fbBox = $('quiz-fb'); fbBox.textContent = '';
+    if (q.firstOk === null) q.firstOk = !!o.correct;
+    if (o.correct) {
+      b.classList.add('ok');
+      $('quiz-opts').querySelectorAll('button').forEach((x) => { x.disabled = true; });
+      fbBox.append(el('strong', 'ok', 'Richtig'), el('span', '', o.why));
+      $('quiz-again').hidden = true; $('quiz-skip').hidden = true;
+      q.done = true; saveQuiz(q);
+    } else {
+      q.tries++;
+      b.classList.add('no'); b.disabled = true;
+      fbBox.append(el('strong', 'no', 'Noch nicht ganz'), el('span', '', o.why), el('span', '', q.quiz.explain), el('span', 'hint', 'Versuch es noch einmal oder schau dir die Szene erneut an.'));
+      $('quiz-again').hidden = false;
+    }
+    fbBox.hidden = false; $('quiz-act').hidden = false;
+    fbBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function closeQuiz() { $('quiz').hidden = true; P.quiz = null; }
+  function saveQuiz(q) {
+    if (!P.l) return;
+    const id = P.l.id;
+    P.quizRes[String(q.si)] = { firstOk: !!q.firstOk, wrong: q.tries, skipped: q.firstOk === null };
+    const data = { lesson: id, area: P.l.area, results: Object.assign({}, P.quizRes), total: P.quizzes.length, at: new Date().toISOString() };
+    P.quizWrite = P.quizWrite.then(async () => { try { const d = await dbReady; if (d) await d.doc('quiz/' + id).set(data); } catch {} });
+  }
+  $('quiz-next').addEventListener('click', () => { const q = P.quiz; if (!q) return; if (!q.done) { q.done = true; saveQuiz(q); } closeQuiz(); play(); });
+  $('quiz-skip').addEventListener('click', () => { const q = P.quiz; if (!q) return; q.done = true; saveQuiz(q); closeQuiz(); play(); });
+  $('quiz-again').addEventListener('click', () => { const q = P.quiz; if (!q) return; q.firstOk = q.firstOk === null ? false : q.firstOk; closeQuiz(); seek(P.l.scenes[q.si].t + 0.01); play(); });
+
   const player = document.querySelector('.player');
   const ICO_FS = '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>', ICO_FS_OFF = '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>';
   function setFs(on) {
@@ -616,8 +712,10 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
 
   function teardown() {
     setFs(false);
+    closeQuiz();
     if (P.playing) pause();
-    if (P.audio) { try { P.audio.pause(); P.audio.removeAttribute('src'); P.audio.load(); } catch {} P.audio = null; }
+    if (P.audio) { const a = P.audio; P.audio = null; try { a.pause(); a.removeAttribute('src'); a.load(); } catch {} }
+    if (P.blobUrl) { try { URL.revokeObjectURL(P.blobUrl); } catch {} P.blobUrl = null; }
     P.l = null; P.scene = -1; P.line = -1; P.els = [];
   }
 
@@ -634,6 +732,9 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     P.l = l; P.done = seen.has(id); P.flat = [];
     l.scenes.forEach((s, si) => s.lines.forEach((x, k) => P.flat.push({ t: x.t, text: x.text, s: si, k, de: x.de })));
     P.termKey = '';
+    P.quizRes = {};
+    P.quizzes = [];
+    l.scenes.forEach((s, si) => { if (s.quiz) P.quizzes.push({ si, t: (si + 1 < l.scenes.length ? l.scenes[si + 1].t : l.duration) - 0.25, quiz: s.quiz, done: false, tries: 0, firstOk: null }); });
     const gl = $('gloss'); gl.textContent = ''; const seenT = new Set();
     P.flat.forEach((x) => (x.de || []).forEach((d) => { if (seenT.has(d[0])) return; seenT.add(d[0]); const li = el('li'); li.append(el('span', '', d[0]), el('b', '', d[1])); gl.append(li); }));
     $('gloss-sec').hidden = !seenT.size;
@@ -646,7 +747,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     $('l-title').textContent = l.title; $('l-hook').textContent = l.hook;
     $('t-all').textContent = fmt(l.duration);
     const track = $('scrub-track'); track.querySelectorAll('.scrub-tick').forEach((x) => x.remove());
-    l.scenes.slice(1).forEach((s) => { const k = el('div', 'scrub-tick'); k.style.left = 'calc(' + (s.t / l.duration) * 100 + '% - 1px)'; track.insertBefore(k, $('scrub-thumb')); });
+    l.scenes.slice(1).forEach((s, i) => { const k = el('div', 'scrub-tick' + (l.scenes[i].quiz ? ' q' : '')); k.style.left = 'calc(' + (s.t / l.duration) * 100 + '% - 1px)'; track.insertBefore(k, $('scrub-thumb')); });
 
     const take = $('take'); take.textContent = ''; (l.takeaways || []).forEach((x) => take.append(el('li', '', x)));
     $('take-sec').hidden = !(l.takeaways || []).length;
@@ -661,9 +762,21 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
 
     P.useAudio = false;
     if (l.audio) {
-      const a = new Audio(); a.preload = 'auto'; a.src = 'lessons/' + id + '/' + l.audio; P.audio = a; P.useAudio = true;
-      a.addEventListener('error', audioFailed);
-      a.addEventListener('loadedmetadata', () => { if (P.pos > 0) { try { a.currentTime = P.pos; } catch {} } });
+      const direct = 'lessons/' + id + '/' + l.audio;
+      const a = new Audio(); a.preload = 'auto'; a.src = direct; P.audio = a; P.useAudio = true;
+      P.blobUrl = null; P.swapped = false;
+      a.addEventListener('error', () => {
+        if (P.audio !== a) return;
+        if (P.blobUrl && a.src === P.blobUrl) { P.blobUrl = null; a.src = direct; try { a.currentTime = P.pos; } catch {} if (P.playing) { const r = a.play(); if (r && r.catch) r.catch(() => {}); } return; }
+        audioFailed();
+      });
+      // Ton zusätzlich komplett laden: aus dem Speicher lässt sich immer frei springen, auch wenn der Server keine Teilabrufe kann
+      fetch(direct).then((r) => (r.ok ? r.blob() : Promise.reject(new Error('audio')))).then((bl) => {
+        if (P.audio !== a) return;
+        P.blobUrl = URL.createObjectURL(bl);
+        if (!P.playing) swapAudio();
+      }).catch(() => {});
+      a.addEventListener('loadedmetadata', () => { a.playbackRate = P.rate; if (P.pos > 0 && Math.abs(a.currentTime - P.pos) > 0.3) { try { a.currentTime = P.pos; } catch {} } });
       a.addEventListener('pause', () => { if (P.playing && !a.ended && P.useAudio) setPlaying(false); });
       a.addEventListener('play', () => { if (!P.playing && P.useAudio) setPlaying(true); });
       try {
@@ -698,6 +811,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
   scrub.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { seek(P.pos - 5); e.preventDefault(); } if (e.key === 'ArrowRight') { seek(P.pos + 5); e.preventDefault(); } });
   document.addEventListener('keydown', (e) => {
     if ($('lesson').hidden || !P.l) return;
+    if (P.quiz) return;
     if (e.key === 'Escape') { setFs(false); return; }
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'BUTTON' || tag === 'SUMMARY') return;
@@ -758,7 +872,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     window.scrollTo(0, 0);
   }
   $('back').addEventListener('click', () => { location.hash = ''; });
-  window.kopfkino = { seek, lesson: () => P.l, fullscreen: setFs };
+  window.kopfkino = { seek, lesson: () => P.l, fullscreen: setFs, quiz: (i) => { if (P.quizzes[i]) openQuiz(P.quizzes[i]); return P.quizzes.length; } };
   window.addEventListener('hashchange', route);
   route();
 })();

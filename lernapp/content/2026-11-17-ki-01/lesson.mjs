@@ -477,6 +477,7 @@ export default {
     },
     {
       title: "Without the kink, everything collapses",
+      quiz: {"q": "You stack 50 layers but remove the kink from every neuron. What can this network do?", "options": [{"text": "Exactly as much as a single layer", "correct": true, "why": "Multiplying and adding 50 times in a row is still just multiplying and adding, so all 50 layers merge into one."}, {"text": "About 50 times as much as one layer", "why": "More layers only help if each layer can do something new. Without the kink, every layer repeats the same kind of step."}, {"text": "Nothing at all, it stops working", "why": "It still computes something: straight-line relationships. It is just no more powerful than one single layer."}], "explain": "Think of currency exchange. Converting euros to dollars and then dollars to yen takes two steps, but one combined rate does the same job in a single step. Layers without a kink behave like that: each one only scales and shifts, and any chain of scaling and shifting can be replaced by one single scaling and shifting. The kink breaks this chain, because it treats values below zero differently from values above zero. That is the one thing a single combined step cannot imitate."},
       svg: s4,
       css: `.lay{transition:transform 1.2s cubic-bezier(.5,0,.2,1),opacity .5s .9s}.lay.on{transform:translateY(var(--dy));opacity:0}`,
       lines: [
@@ -511,6 +512,7 @@ export default {
     },
     {
       title: "Folding space",
+      quiz: {"q": "Why can a network with one extra layer separate the crossed points when a single neuron cannot?", "options": [{"text": "The first layer reshapes the space so that one straight boundary is enough", "correct": true, "why": "The two neurons with a kink fold the sheet. After the fold, one straight line separates blue from yellow."}, {"text": "The extra neurons memorize where the four points are", "why": "Nothing is memorized. The neurons only measure distances from a line. What matters is what that does to the space."}, {"text": "With more neurons, the boundary itself can be drawn as a curve", "why": "Each neuron still draws a straight boundary. It only looks bent once you unfold the space again."}], "explain": "A single neuron can draw only one straight line, and no straight line puts both blue points on one side and both yellow points on the other. The extra layer does not draw a better line. It changes the map instead: it folds the sheet along the diagonal, so the two yellow points land on the same spot, away from the fold, while the blue points stay on the fold. On this new map the problem is easy. Deep networks repeat this move many times: each layer redraws the map for the next one."},
       svg: s7,
       css: css7,
       lines: [
@@ -566,6 +568,7 @@ export default {
     },
     {
       title: "What comes out at the end",
+      quiz: {"q": "A language model gets a question on a topic it saw almost no examples of. What happens inside?", "options": [{"text": "It computes an answer anyway, the same way as always", "correct": true, "why": "There is no lookup that could fail. The formula always produces probabilities for the next word, with good grounds or without."}, {"text": "It searches its stored texts and finds nothing", "why": "There are no stored texts to search. The model only has weights, and the formula always produces an output."}, {"text": "It notices the gap and reports that it does not know", "why": "Not automatically. Nothing in the formula checks whether knowledge is missing. Saying “I don't know” has to be learned like any other answer."}], "explain": "A language model has no database and no step where it checks whether it knows something. For every input, the formula produces a probability for each possible next word, and one word is drawn. In familiar territory, those probabilities reflect patterns from many examples. In unfamiliar territory, the same computation still runs and still produces fluent, confident-sounding words. That is why a made-up answer can sound just as convincing as a correct one: from the inside, both come from the same process."},
       svg: sOut,
       lines: [
         "What comes out of a language model at the end? Not a finished sentence, but once again a list of numbers.",
