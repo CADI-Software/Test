@@ -6,7 +6,15 @@ Dieses Dokument beschreibt, wie eine Folge entsteht. Einstellungen stehen in `co
 
 ## Was der Nutzer will
 
-- Deutsch, Du-Form, kurz und knapp. Nichts Offensichtliches erklären: jede Szene soll etwas liefern,
+- **Sprache: Englisch.** Sprechtext, Untertitel, Tafelbeschriftung, Titel, Merksätze und geplante Themen sind englisch (Zahlen mit Dezimalpunkt).
+  Der Nutzer ist deutscher Muttersprachler: klares, einfaches Englisch, kurze Sätze, keine Redewendungen, die man nachschlagen muss.
+  Die Bedienoberfläche der Seite und die Nachrichten im Chat bleiben deutsch.
+- **Wichtige Fachbegriffe immer zusätzlich auf Deutsch zeigen:** an der Zeile, in der ein Fachbegriff zum ersten Mal fällt,
+  `de: [['englisch', 'deutsch']]` angeben. Die Seite blendet das unter der Tafel ein und sammelt alle Begriffe in einer Liste unter der Folge.
+  Mindestens 6 je Folge, höchstens 3 je Szene, nur echte Fachbegriffe und Schlüsselwörter, keine Alltagswörter.
+- **Stimmen:** Frauen- und Männerstimme wechseln von Folge zu Folge. `voice` ist immer die andere als bei der vorigen Folge
+  (steht in `site/lessons/index.json` beim neuesten Eintrag).
+- Du-Ansprache („you“), kurz und knapp. Nichts Offensichtliches erklären: jede Szene soll etwas liefern,
   das ein interessierter Laie noch nicht weiß (Mechanismus, Gegenintuitives, konkrete Zahl, Folgerung).
 - Themenbereiche: siehe `config.json` → `areas`. Themen wählt Claude selbst, der Nutzer gibt nur die Bereiche vor.
 - Mehrteilige Reihen sind erwünscht (z. B. „KI verstehen“, Folge 1, 2, 3 …). Jede Folge muss trotzdem allein verständlich sein.
@@ -33,11 +41,12 @@ Dieses Dokument beschreibt, wie eine Folge entsteht. Einstellungen stehen in `co
    aber konkrete, alltagstaugliche Einordnung. Prognosen (Welt in 5 bis 10 Jahren) als Szenarien mit Begründung, nicht als Gewissheit.
 5. **Folge schreiben:** `content/<id>/lesson.mjs` (Format unten). `<id>` = `JJJJ-MM-TT-<bereich>-<nn>`, z. B. `2026-11-18-adhs-01`.
 6. **Sprechtext erzeugen:** `node tools/build.mjs <id> --narration`
-7. **Vertonen** mit der kostenlosen lokalen Stimme (Piper): einmal pro Container `pip install "sherpa-onnx<2" soundfile numpy`,
-   Modell von `piper.modelUrl` (siehe `config.json`) laden und entpacken, dann `PIPER_DIR=<entpackter Ordner> python3 tools/tts_piper.py <id>`.
-   Liefert exakte Zeilenzeiten. **Kein Magnific verwenden** (vom Nutzer ausdrücklich untersagt), auch nicht als Ausweichlösung,
+7. **Vertonen** mit den kostenlosen lokalen englischen Stimmen (Kokoro): einmal pro Container `pip install "sherpa-onnx<2" soundfile numpy`,
+   Modell von `kokoro.modelUrl` (siehe `config.json`, ca. 330 MB) laden und entpacken, dann
+   `KOKORO_DIR=<entpackter Ordner> python3 tools/tts_kokoro.py <id> <female|male>` (dieselbe Stimme wie `voice` in `lesson.mjs`). Liefert exakte Zeilenzeiten.
+   **Kein Magnific verwenden** (vom Nutzer ausdrücklich untersagt), auch nicht als Ausweichlösung,
    und auch sonst keine kostenpflichtigen Dienste ohne ausdrückliche Zustimmung im Chat.
-8. **Bauen:** `VOICE=piper-thorsten node tools/build.mjs <id>`
+8. **Bauen:** `node tools/build.mjs <id>`
 9. **Ansehen:** `node tools/preview.cjs <id> <scratchpad>/preview` und die Bilder `m1.png …` wirklich öffnen.
    Überlappende Schrift, abgeschnittene Texte, leere Tafeln und falsche Reihenfolgen beheben, dann neu bauen. Höchstens zwei Korrekturrunden.
 10. **Plan pflegen:** `content/plan.json` aktualisieren (heutiges Thema raus, 5 bis 6 kommende Themen drin, an Feedback angepasst), danach Schritt 8 wiederholen,
@@ -60,17 +69,21 @@ export default {
   title: '…', hook: 'Ein bis zwei Sätze, die neugierig machen.',
   level: 2,                                                         // 1 Einstieg, 2 mittel, 3 tief
   poster: 6,                                                        // Index der Szene, deren Endbild als Vorschau dient
+  voice: 'male',                                                    // female | male, immer abwechselnd
   scenes: [
     { title: 'Kurzer Szenentitel', svg: `…`, css: `…optional…`,
-      lines: ['Ein bis zwei Sätze.', { text: 'Anzeige: 0,5 mal 2', say: 'Null Komma fünf mal zwei' }] },
+      lines: ['One or two sentences.',
+              { text: 'Shown: 0.5 times 2', say: 'zero point five times two' },
+              { text: 'These dials are called weights.', de: [['weights', 'Gewichte']] }] },
   ],
   takeaways: ['4 bis 6 Merksätze'],
   sources: ['Autor (Jahr): Titel'],
 };
 ```
 
-Umfang: 13 bis 16 Szenen, 4 bis 6 Zeilen je Szene, insgesamt 1.250 bis 1.450 Wörter (ergibt 8 bis 10 Minuten).
-Eine Zeile ist ein Untertitel: höchstens 190 Zeichen, ein Gedanke. `say` nur, wenn die Aussprache vom Anzeigetext abweichen muss (Zahlen, Formeln, Abkürzungen).
+Umfang: 14 bis 17 Szenen, 4 bis 6 Zeilen je Szene, insgesamt 1.350 bis 1.600 englische Wörter (ergibt 8 bis 10 Minuten; Folge 1 hatte 1.200 Wörter und 7 Minuten).
+Eine Zeile ist ein Untertitel: höchstens 190 Zeichen, ein Gedanke. `say` immer, wenn der Anzeigetext Ziffern, Formeln oder schwer aussprechbare Abkürzungen enthält: im Sprechtext dürfen keine Ziffern stehen
+(Zahlen als Wörter ausschreiben, Jahreszahlen wie „nineteen forty-three“), sonst bricht der Build ab.
 
 Dramaturgie: Einstieg mit einer verbreiteten Annahme, die nicht stimmt, oder einer konkreten Frage. Pro Szene ein Gedanke und ein Bild.
 Letzte Szene: Folgerungen und ein Merksatz, Ausblick auf die nächste Folge der Reihe.

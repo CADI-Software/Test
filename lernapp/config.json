@@ -1,12 +1,24 @@
 {
   "artifactUrl": "https://claude.ai/artifact/6MeTfc5pGHaTauLf4rNm9d",
   "timezone": "Europe/Berlin",
-  "voice": "piper",
-  "voiceNote": "Es wird ausschließlich die kostenlose lokale Stimme (Piper) verwendet. Der Nutzer hat ausdrücklich untersagt, Magnific zu verwenden: keine Magnific-Werkzeuge aufrufen, keine Credits ausgeben.",
-  "piper": {
-    "modelUrl": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-de_DE-thorsten-high.tar.bz2",
+  "voice": "kokoro",
+  "voiceNote": "Kostenlose lokale englische Stimmen (Kokoro). Frauen- und Männerstimme wechseln von Folge zu Folge: immer die andere Stimme als bei der vorigen Folge (steht in site/lessons/index.json unter voice). Der Nutzer hat ausdrücklich untersagt, Magnific zu verwenden: keine Magnific-Werkzeuge aufrufen, keine Credits ausgeben.",
+  "language": "en",
+  "languageNote": "Folgen komplett auf Englisch (Sprechtext, Untertitel, Tafel, Titel, Merksätze). Der Nutzer ist deutscher Muttersprachler: klares, einfaches Englisch, kurze Sätze, Fachbegriffe erklären. Die Bedienoberfläche der Seite und die Chat-Nachrichten bleiben deutsch. Wichtige Fachbegriffe immer zusätzlich auf Deutsch zeigen: an der Zeile, in der der Begriff fällt, de: [[\"englisch\", \"deutsch\"]] angeben; die Seite blendet das unter der Tafel ein.",
+  "kokoro": {
+    "modelUrl": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-multi-lang-v1_0.tar.bz2",
     "pip": "sherpa-onnx<2 soundfile numpy",
-    "speed": 0.9
+    "voices": {
+      "female": {
+        "sid": 3,
+        "name": "af_heart"
+      },
+      "male": {
+        "sid": 16,
+        "name": "am_michael"
+      }
+    },
+    "speed": 1.0
   },
   "areas": {
     "ki": "KI und neuronale Netze: Funktionsweise, Technik dahinter, Neues, Ausblick auf 5 bis 10 Jahre",

@@ -15,28 +15,28 @@ const s1 = `
   <ellipse cx="200" cy="120" rx="70" ry="18" class="fn sm"/>
   <path d="M130 120v90c0 10 31 18 70 18s70-8 70-18v-90" class="fn sm"/>
   <path d="M130 150c0 10 31 18 70 18s70-8 70-18M130 180c0 10 31 18 70 18s70-8 70-18" class="fn sm s1"/>
-  <text x="200" y="272" class="mid tm fm">Datenbank voller Fakten und Regeln?</text>
+  <text x="200" y="272" class="mid tm fm">A database full of facts and rules?</text>
 </g>
 <path d="M118 92 L282 248" class="fn sc s3" ${L(1, 'draw', { out: 2 })}/>
 <path d="M282 92 L118 248" class="fn sc s3" ${L(1, 'draw', { d: 0.5, out: 2 })}/>
 <g ${L(2, 'up')}>
   <rect x="130" y="140" width="140" height="104" rx="14" class="fp si"/>
-  <text x="200" y="126" class="mid ts fm">eine sehr lange Formel</text>
-  <text x="50" y="166" class="mid tm">0,2</text><text x="50" y="198" class="mid tm">0,9</text><text x="50" y="230" class="mid tm">0,1</text>
+  <text x="200" y="126" class="mid ts fm">one very long formula</text>
+  <text x="50" y="166" class="mid tm">0.2</text><text x="50" y="198" class="mid tm">0.9</text><text x="50" y="230" class="mid tm">0.1</text>
   ${arrow(76, 192, 124, 192, 'i')}
   ${arrow(276, 192, 324, 192, 'i')}
-  <text x="352" y="182" class="mid tm">0,7</text><text x="352" y="214" class="mid tm">0,3</text>
-  <text x="50" y="126" class="mid ts fm">rein</text><text x="352" y="126" class="mid ts fm">raus</text>
+  <text x="352" y="182" class="mid tm">0.7</text><text x="352" y="214" class="mid tm">0.3</text>
+  <text x="50" y="126" class="mid ts fm">in</text><text x="352" y="126" class="mid ts fm">out</text>
 </g>
-<text x="200" y="74" class="mid tm fb" ${L(3, 'up')}>Bild, Text, Ton → alles wird zu Zahlen</text>
+<text x="200" y="74" class="mid tm fb" ${L(3, 'up')}>Image, text, sound → all become numbers</text>
 <g ${L(4, 'pop')}>${dials}</g>
 <g ${L(4, 'up')}>
-  <text x="200" y="282" class="mid tm fa tb">Gewichte</text>
-  <text x="200" y="306" class="mid ts fm">bei Sprachmodellen: Hunderte Milliarden</text>
+  <text x="200" y="282" class="mid tm fa tb">Weights</text>
+  <text x="200" y="306" class="mid ts fm">in language models: hundreds of billions</text>
 </g>
 <g ${L(5, 'up')}>
   <rect x="40" y="330" width="320" height="44" rx="12" class="fp"/>
-  <text x="200" y="358" class="mid tm">Können = Stellung der Schrauben</text>
+  <text x="200" y="358" class="mid tm">Skill = how the dials are set</text>
 </g>`;
 
 // ---------- Szene 2: Ein Neuron ----------
@@ -44,15 +44,15 @@ const s2 = `
 <g ${L(0, 'pop')}><circle cx="250" cy="190" r="46" class="fp si"/></g>
 <text x="250" y="264" class="mid ts fm" ${L(0)}>Neuron</text>
 <g ${L(1, 'up')}>
-  <text x="60" y="78" class="mid ts fm">Eingaben</text>
+  <text x="60" y="78" class="mid ts fm">Inputs</text>
   <circle cx="60" cy="120" r="22" class="fn sm"/><text x="60" y="127" class="mid tl">2</text>
   <circle cx="60" cy="260" r="22" class="fn sm"/><text x="60" y="267" class="mid tl">3</text>
   <line x1="84" y1="127" x2="207" y2="174" class="sa"/>
   <line x1="84" y1="253" x2="207" y2="206" class="sc"/>
-  <text x="142" y="128" class="mid tm fa tb">× 0,5</text>
+  <text x="142" y="128" class="mid tm fa tb">× 0.5</text>
   <text x="142" y="262" class="mid tm fc tb">× (−1)</text>
 </g>
-<text x="142" y="286" class="mid ts fc" ${L(2, 'up')}>spricht dagegen</text>
+<text x="142" y="286" class="mid ts fc" ${L(2, 'up')}>counts against</text>
 <g ${L(3, 'up')}>
   ${arrow(250, 84, 250, 140, 'b')}
   <text x="250" y="70" class="mid tm fb tb">Bias + 1</text>
@@ -62,7 +62,7 @@ const s2 = `
   ${arrow(298, 190, 348, 190, 'i')}
   <text x="372" y="197" class="mid tl tb">−1</text>
   <rect x="40" y="318" width="320" height="48" rx="12" class="fp"/>
-  <text x="200" y="350" class="mid tl">0,5·2 + (−1)·3 + 1 = −1</text>
+  <text x="200" y="350" class="mid tl">0.5·2 + (−1)·3 + 1 = −1</text>
 </g>`;
 
 // ---------- Szene 3: Der Knick ----------
@@ -70,52 +70,52 @@ const s3 = `
 <g ${L(0)}>
   ${arrow(40, 240, 366, 240, 'm')}
   ${arrow(200, 336, 200, 60, 'm')}
-  <text x="362" y="262" class="end ts fm">Eingang</text>
-  <text x="210" y="70" class="ts fm">Ausgang</text>
+  <text x="362" y="262" class="end ts fm">Input</text>
+  <text x="210" y="70" class="ts fm">Output</text>
   <text x="208" y="258" class="ts fm">0</text>
 </g>
 <path d="M40 240 L200 240" class="fn sc s3" ${L(1, 'draw')}/>
 <path d="M200 240 L330 110" class="fn sa s3" ${L(1, 'draw', { d: 3.2 })}/>
-<text x="112" y="214" class="mid ts fc" ${L(1, 'up', { d: 2.2 })}>unter null → 0</text>
-<text x="322" y="170" class="mid ts fa" ${L(1, 'up', { d: 5 })}>bleibt</text>
+<text x="112" y="214" class="mid ts fc" ${L(1, 'up', { d: 2.2 })}>below zero → 0</text>
+<text x="322" y="170" class="mid ts fa" ${L(1, 'up', { d: 5 })}>stays</text>
 <g ${L(2, 'pop', { d: 2.5 })}><circle cx="140" cy="240" r="8" class="fb"/></g>
 <text x="140" y="268" class="mid tm fb tb" ${L(2, 'up', { d: 2.5 })}>−1 → 0</text>
 <path d="M40 237 C140 236 176 232 200 220 S 280 150 328 100" class="fn se dash" ${L(3)}/>
-<text x="268" y="120" class="end ts fe" ${L(3, 'up')}>weicher Knick</text>
+<text x="268" y="120" class="end ts fe" ${L(3, 'up')}>soft kink</text>
 <g ${L(4)}><circle cx="200" cy="240" r="17" class="fn sb pulse"/></g>
 <g ${L(4, 'up')}>
   <rect x="64" y="298" width="272" height="44" rx="12" class="fp"/>
-  <text x="200" y="326" class="mid tm">Ohne Knick wäre das Netz wertlos</text>
+  <text x="200" y="326" class="mid tm">Without the kink: worthless</text>
 </g>`;
 
 // ---------- Szene 4: Ohne Knick fällt alles zusammen ----------
 const layerBox = (i) => `
   <rect x="40" y="${40 + 66 * i}" width="170" height="46" rx="10" class="fp si"/>
-  <text x="125" y="${69 + 66 * i}" class="mid ts">Schicht ${i + 1}:  × und +</text>`;
+  <text x="125" y="${69 + 66 * i}" class="mid ts">Layer ${i + 1}:  × and +</text>`;
 const s4 = `
 <g ${L(0, 'up')}>
   ${layerBox(0)}
   ${[1, 2, 3].map((i) => `<g class="lay" data-l="2" data-fx="state" style="--dy:${-66 * i}px">${layerBox(i)}</g>`).join('')}
 </g>
 <g ${L(1, 'up')}>
-  <text x="305" y="60" class="mid ts fm">erst × und +</text>
-  <text x="305" y="84" class="mid ts fm">dann × und +</text>
-  <text x="305" y="114" class="mid tm fb tb">= wieder × und +</text>
+  <text x="305" y="60" class="mid ts fm">first × and +</text>
+  <text x="305" y="84" class="mid ts fm">then × and +</text>
+  <text x="305" y="114" class="mid tm fb tb">= still × and +</text>
 </g>
-<text x="125" y="116" class="mid tm fa tb" ${L(2, 'up', { d: 1.6 })}>= eine einzige Schicht</text>
+<text x="125" y="116" class="mid tm fa tb" ${L(2, 'up', { d: 1.6 })}>= one single layer</text>
 <g ${L(3, 'up')}>
   ${arrow(235, 228, 384, 228, 'm')}
   ${arrow(305, 306, 305, 150, 'm')}
   <path d="M240 292 L372 164" class="fn sa s3"/>
-  <text x="305" y="330" class="mid ts fa">kann nur Geraden</text>
+  <text x="305" y="330" class="mid ts fa">straight lines only</text>
 </g>
 <g ${L(4)}>
   <path d="M240 270 C262 170 284 300 305 228 S 346 150 374 250" class="fn sb s3" data-l="4" data-fx="draw"/>
-  <text x="352" y="150" class="mid ts fb">die Welt</text>
+  <text x="352" y="150" class="mid ts fb">the world</text>
 </g>
 <g ${L(4, 'up', { d: 3 })}>
   <rect x="30" y="346" width="340" height="42" rx="12" class="fp"/>
-  <text x="200" y="373" class="mid tm">Erst der Knick macht Tiefe sinnvoll</text>
+  <text x="200" y="373" class="mid tm">The kink is what makes depth useful</text>
 </g>`;
 
 // ---------- Szene 5: Ein Neuron zieht eine Grenze ----------
@@ -125,8 +125,8 @@ const dist = ([x, y]) => ((x - 60) * 140 - (y - 150) * 280) / 313; // > 0: aktiv
 const s5 = `
 <g ${L(0)}>
   <rect x="50" y="50" width="300" height="290" rx="10" class="fp"/>
-  <text x="200" y="366" class="mid ts fm">Eingabe 1</text>
-  <text x="34" y="200" class="mid ts fm" transform="rotate(-90 34 200)">Eingabe 2</text>
+  <text x="200" y="366" class="mid ts fm">Input 1</text>
+  <text x="34" y="200" class="mid ts fm" transform="rotate(-90 34 200)">Input 2</text>
 </g>
 <polygon points="50,60 60,50 340,50 350,60 350,295 50,145" class="fa" style="opacity:.14" ${L(2)}/>
 <g ${L(0, 'pop')}>
@@ -138,11 +138,11 @@ const s5 = `
   }).join('')}
 </g>
 <path d="M50 145 L350 295" class="fn si s3" ${L(1, 'draw')}/>
-<text x="296" y="322" class="mid ts fm" ${L(2, 'up', { out: 4 })}>stumm</text>
-<text x="296" y="78" class="mid ts fa tb" ${L(2, 'up', { out: 4 })}>je weiter, desto lauter</text>
+<text x="296" y="322" class="mid ts fm" ${L(2, 'up', { out: 4 })}>silent</text>
+<text x="296" y="78" class="mid ts fa tb" ${L(2, 'up', { out: 4 })}>farther = louder</text>
 <g ${L(3, 'up')}>
   ${arrow(200, 220, 236, 148, 'b')}
-  <text x="246" y="142" class="ts fb tb">Richtung</text>
+  <text x="246" y="142" class="ts fb tb">direction</text>
 </g>
 <g ${L(4)}>
   <path d="M90 50 L250 340" class="fn sc dash"/>
@@ -162,8 +162,8 @@ const s6 = `
   <line x1="60" y1="250" x2="340" y2="130" class="sc dash"/>
   <path d="M186 176 L214 204 M214 176 L186 204" class="fn sc s3"/>
 </g>
-<text x="200" y="346" class="mid tm" ${L(2, 'up')}>1969 bewiesen: für ein Neuron unlösbar</text>
-<text x="200" y="376" class="mid tm fd tb" ${L(3, 'up', { d: 3.5 })}>Lösung: eine Schicht davor</text>`;
+<text x="200" y="346" class="mid tm" ${L(2, 'up')}>1969: proven impossible for one neuron</text>
+<text x="200" y="376" class="mid tm fd tb" ${L(3, 'up', { d: 3.5 })}>Solution: one layer before it</text>`;
 
 // ---------- Szene 7: Der Raum wird gefaltet ----------
 const net = (() => {
@@ -187,18 +187,18 @@ const s7 = `
   <circle cx="120" cy="280" r="14" class="fa"/><circle cx="280" cy="120" r="14" class="fa"/>
 </g>
 <path d="M82 318 L318 82" class="fn si dash" ${L(1)}/>
-<text x="74" y="340" class="ts fm" ${L(1, 'up')}>Faltkante</text>
+<text x="74" y="340" class="ts fm" ${L(1, 'up')}>fold line</text>
 <path d="M170 310 L310 170" class="fn sd s3" ${L(2, 'draw')}/>
-<text x="262" y="166" class="mid ts fa tb" ${L(2, 'up', { d: 2 })}>blau</text>
-<text x="232" y="300" class="mid ts fb tb" ${L(2, 'up', { d: 3 })}>gelb</text>
+<text x="262" y="166" class="mid ts fa tb" ${L(2, 'up', { d: 2 })}>blue</text>
+<text x="232" y="300" class="mid ts fb tb" ${L(2, 'up', { d: 3 })}>yellow</text>
 <g ${L(3, 'up')}>
   ${net}
-  <text x="105" y="158" class="mid ts fm">2 Neuronen mit Knick</text>
+  <text x="105" y="158" class="mid ts fm">2 neurons with a kink</text>
 </g>
 <g ${L(3, 'up', { d: 2 })}>${arrow(206, 206, 264, 264, 'i')}</g>
 <g ${L(4, 'up')}>
   <rect x="24" y="350" width="352" height="40" rx="12" class="fp"/>
-  <text x="200" y="376" class="mid ts">Raum verbiegen, bis das Problem einfach wird</text>
+  <text x="200" y="376" class="mid ts">Bend the space until the problem gets easy</text>
 </g>`;
 const css7 = `
 .flap{transform-origin:0 0;transform:translate(200px,200px) rotate(-45deg) scaleY(1) rotate(45deg) translate(-200px,-200px);transition:transform 1.8s cubic-bezier(.6,0,.3,1)}
@@ -212,22 +212,22 @@ const f = (x) => {
 const sample = (n) => Array.from({ length: n }, (_, i) => { const x = 40 + (320 * i) / (n - 1); return [x, f(x)]; });
 const s8 = `
 <polyline points="${pts(sample(90))}" class="fn sm s3" style="opacity:.55" ${L(0)}/>
-<text x="200" y="40" class="mid ts fm" ${L(0, 'up')}>Zielkurve: ein beliebiger Zusammenhang</text>
+<text x="200" y="40" class="mid ts fm" ${L(0, 'up')}>Target curve: any relationship</text>
 <g ${L(1, 'fade', { out: 2 })}>
   <polyline points="${pts(sample(4))}" class="fn sc s3" data-l="1" data-fx="draw"/>
-  <text x="80" y="70" class="mid ts fc tb">2 Knicke</text>
+  <text x="80" y="70" class="mid ts fc tb">2 kinks</text>
 </g>
 <g ${L(1, 'fade', { d: 3.4, out: 2 })}>
   <polyline points="${pts(sample(10))}" class="fn sb s3" data-l="1" data-d="3.4" data-fx="draw"/>
-  <text x="200" y="70" class="mid ts fb tb">8 Knicke</text>
+  <text x="200" y="70" class="mid ts fb tb">8 kinks</text>
 </g>
 <g ${L(1, 'fade', { d: 6 })}>
   <polyline points="${pts(sample(90))}" class="fn sa s3" data-l="1" data-d="6" data-fx="draw"/>
-  <text x="320" y="70" class="mid ts fa tb">1000 Knicke</text>
+  <text x="320" y="70" class="mid ts fa tb">1000 kinks</text>
 </g>
-<text x="200" y="322" class="mid tm" ${L(2, 'up')}>Bewiesen: jede Form ohne Sprünge</text>
-<text x="200" y="350" class="mid tm fb tb" ${L(3, 'up')}>Gewichte existieren. Aber welche?</text>
-<text x="200" y="380" class="mid tm fa" ${L(4, 'up')}>Das Finden heißt Training</text>`;
+<text x="200" y="322" class="mid tm" ${L(2, 'up')}>Proven: any shape without jumps</text>
+<text x="200" y="350" class="mid tm fb tb" ${L(3, 'up')}>The weights exist. But which ones?</text>
+<text x="200" y="380" class="mid tm fa" ${L(4, 'up')}>Finding them is called training</text>`;
 
 // ---------- Szene 9: Tiefe schlägt Breite ----------
 const wide = (() => {
@@ -249,20 +249,20 @@ const doubling = [['2', 44, 0], ['4', 84, 1.2], ['8', 124, 2.2], ['16', 170, 2.9
 const s9 = `
 <g ${L(0, 'up')}>
   ${wide}
-  <text x="100" y="180" class="mid ts fb tb">breit</text>
+  <text x="100" y="180" class="mid ts fb tb">wide</text>
   ${deep}
-  <text x="290" y="180" class="mid ts fa tb">tief</text>
+  <text x="290" y="180" class="mid ts fa tb">deep</text>
   <text x="200" y="97" class="mid tl fm">?</text>
 </g>
 ${doubling.map(([t, x, d]) => `<text x="${x}" y="226" class="mid tl tb${t === '1024' ? ' fa' : ''}" ${L(1, 'pop', { d })}>${t}</text>`).join('')}
-<text x="200" y="250" class="mid ts fm" ${L(1, 'up')}>Lagen nach jeder Faltung</text>
+<text x="200" y="250" class="mid ts fm" ${L(1, 'up')}>layers of paper after each fold</text>
 <g ${L(2, 'up')}>
   ${arrow(40, 372, 182, 372, 'm')}
   ${arrow(40, 372, 40, 268, 'm')}
   <path d="M42 370 L174 350" class="fn sb s3"/>
   <path d="M42 370 C120 368 156 340 172 278" class="fn sa s3"/>
-  <text x="188" y="284" class="ts fa tb">Tiefe</text>
-  <text x="188" y="354" class="ts fb tb">Breite</text>
+  <text x="188" y="284" class="ts fa tb">depth</text>
+  <text x="188" y="354" class="ts fb tb">width</text>
 </g>
 <g ${L(3, 'up')}>
   <text x="320" y="318" class="mid tb" style="font-size:25px">Deep</text>
@@ -296,43 +296,43 @@ const objects = `
   <circle cx="304" cy="246" r="9" class="fk sd"/><circle cx="346" cy="246" r="9" class="fk sd"/>`;
 const s10 = `
 <g ${L(0, 'up')}>
-  ${col(75, 'erste Schichten')}${col(200, 'mittlere')}${col(325, 'hintere')}
+  ${col(75, 'early layers')}${col(200, 'middle')}${col(325, 'late')}
   ${arrow(133, 183, 142, 183, 'm', { size: 7 })}${arrow(258, 183, 267, 183, 'm', { size: 7 })}
 </g>
 <g ${L(1, 'up')}>${edges}</g>
-<text x="75" y="322" class="mid ts fa tb" ${L(1, 'up')}>Kanten</text>
+<text x="75" y="322" class="mid ts fa tb" ${L(1, 'up')}>Edges</text>
 <g ${L(1, 'up', { d: 4.2 })}>${parts}</g>
-<text x="200" y="322" class="mid ts fb tb" ${L(1, 'up', { d: 4.2 })}>Texturen, Teile</text>
+<text x="200" y="322" class="mid ts fb tb" ${L(1, 'up', { d: 4.2 })}>Textures, parts</text>
 <g ${L(2, 'up')}>${objects}</g>
-<text x="325" y="322" class="mid ts fd tb" ${L(2, 'up')}>Objekte</text>
+<text x="325" y="322" class="mid ts fd tb" ${L(2, 'up')}>Objects</text>
 <g ${L(3, 'up')}>
   <rect x="24" y="340" width="352" height="46" rx="12" class="fp"/>
-  <text x="200" y="368" class="mid ts">Was die Schrauben bedeuten, findet das Netz selbst</text>
+  <text x="200" y="368" class="mid ts">The network works out what each dial means</text>
 </g>`;
 
 // ---------- Szene 11: Von vier Punkten zu Sprache ----------
 const words = [
-  ['König', 'a', 80, 130, 95, 135], ['Königin', 'a', 290, 262, 140, 168], ['Kaiser', 'a', 190, 270, 70, 195],
-  ['Apfel', 'b', 150, 200, 280, 120], ['Birne', 'b', 80, 262, 315, 158],
-  ['laufen', 'd', 200, 112, 215, 240], ['rennen', 'd', 325, 190, 270, 268],
+  ['king', 'a', 80, 130, 95, 135], ['queen', 'a', 290, 262, 140, 168], ['emperor', 'a', 190, 270, 70, 195],
+  ['apple', 'b', 150, 200, 280, 120], ['pear', 'b', 80, 262, 315, 158],
+  ['walk', 'd', 200, 112, 215, 240], ['run', 'd', 325, 190, 270, 268],
 ];
 const s11 = `
-<text x="200" y="208" class="mid tx tb" ${L(0, 'pop', { out: 1 })}>Und Sprache?</text>
+<text x="200" y="208" class="mid tx tb" ${L(0, 'pop', { out: 1 })}>And language?</text>
 <g ${L(1, 'up')}>
-  <text x="66" y="52" class="mid tm tb">König</text>
+  <text x="66" y="52" class="mid tm tb">king</text>
   ${arrow(102, 47, 134, 47, 'm')}
-  <text x="144" y="52" class="tm fm">[ 0,2   −1,3   0,8   … ]</text>
+  <text x="144" y="52" class="tm fm">[ 0.2   −1.3   0.8   … ]</text>
   <rect x="24" y="76" width="352" height="218" rx="14" class="fp"/>
   ${words.map(([w, c, x, y, tx, ty]) => `<g class="w" data-l="2" data-fx="state" style="--dx:${tx - x}px;--dy:${ty - y}px"><circle cx="${x}" cy="${y}" r="6" class="f${c}"/><text x="${x + 11}" y="${y + 5}" class="ts">${w}</text></g>`).join('')}
 </g>
-<text x="350" y="100" class="end ts fm" ${L(2, 'up', { d: 2 })}>Ähnliches rückt zusammen</text>
+<text x="350" y="100" class="end ts fm" ${L(2, 'up', { d: 2 })}>similar things move together</text>
 <g ${L(3, 'up')}>
-  <text x="200" y="318" class="mid ts fm">Mini-Netz: 9 Gewichte</text>
-  <text x="200" y="340" class="mid tm tb">Sprachmodell: Hunderte Milliarden</text>
+  <text x="200" y="318" class="mid ts fm">Our mini network: 9 weights</text>
+  <text x="200" y="340" class="mid tm tb">Language model: hundreds of billions</text>
 </g>
 <g ${L(4, 'up')}>
-  <text x="200" y="370" class="mid tm fa tb">gewichten → addieren → knicken</text>
-  <text x="200" y="391" class="mid ts fe">+ Zusatzbauteile wie Attention</text>
+  <text x="200" y="370" class="mid tm fa tb">weigh → add → bend</text>
+  <text x="200" y="391" class="mid ts fe">+ extra parts such as attention</text>
 </g>`;
 const css11 = `
 .w{transition:transform 1.8s cubic-bezier(.4,0,.2,1)}
@@ -358,13 +358,13 @@ const near = `
   <circle cx="18" cy="22" r="5" class="fd"/><circle cx="34" cy="14" r="5" class="fd"/><circle cx="30" cy="34" r="5" class="fd"/><circle cx="14" cy="42" r="5" class="fd"/>
   <circle cx="46" cy="30" r="6" class="fn si pulse"/>`;
 const s12 = `
-<g ${L(1, 'up')}>${row(26, 'Wissen ist verschmiert', 'kein Ort, an dem ein Fakt steht', smear)}</g>
-<g ${L(2, 'up')}>${row(124, 'Rechnen statt Nachschlagen', 'auch dort, wo Beispiele fehlen', extrap)}</g>
-<g ${L(3, 'up')}>${row(222, 'Ähnliches liegt nah', 'deshalb klappt auch Unbekanntes', near)}</g>
-<text x="200" y="74" class="mid tx tb" ${L(0, 'pop', { out: 1 })}>Drei Folgen</text>
+<g ${L(1, 'up')}>${row(26, 'Knowledge is smeared out', 'no single place holds a fact', smear)}</g>
+<g ${L(2, 'up')}>${row(124, 'Computing, not looking up', 'even where it saw no examples', extrap)}</g>
+<g ${L(3, 'up')}>${row(222, 'Similar things sit close', 'so new cases work too', near)}</g>
+<text x="200" y="74" class="mid tx tb" ${L(0, 'pop', { out: 1 })}>Three consequences</text>
 <g ${L(4, 'up')}>
-  <text x="200" y="350" class="mid tl fa tb">gewichten · addieren · knicken</text>
-  <text x="200" y="380" class="mid ts fm">Nächste KI-Folge: Wie ein Netz lernt</text>
+  <text x="200" y="350" class="mid tl fa tb">weigh · add · bend</text>
+  <text x="200" y="380" class="mid ts fm">Next AI episode: how a network learns</text>
 </g>`;
 
 // ---------- Szene: Nur eine Karikatur des Gehirns ----------
@@ -373,233 +373,234 @@ const sBio = `
   <path d="M78 116 L52 92 M60 100 L44 110 M75 140 L48 158 M56 152 L40 142 M95 108 L92 78 M92 88 L78 70" class="fn sc"/>
   <path d="M117 132 C150 138 160 120 192 128" class="fn sc"/>
   <circle cx="95" cy="130" r="22" class="fk sc"/>
-  <text x="112" y="196" class="mid ts fm">echte Nervenzelle</text>
+  <text x="112" y="196" class="mid ts fm">real nerve cell</text>
   <line x1="236" y1="100" x2="274" y2="122" class="sm"/><line x1="236" y1="160" x2="274" y2="138" class="sm"/>
   <circle cx="300" cy="130" r="28" class="fp si"/><text x="300" y="139" class="mid tl">Σ</text>
-  <text x="300" y="196" class="mid ts fm">künstliches Neuron, 1943</text>
+  <text x="300" y="196" class="mid ts fm">artificial neuron, 1943</text>
 </g>
 <g ${L(1, 'up')}>
   <path d="M40 244 H62 l4 -28 l4 28 H92 l4 -28 l4 28 H108 l4 -28 l4 28 H156 l4 -28 l4 28 H184" class="fn sc"/>
-  <text x="112" y="268" class="mid ts fc tb">Impulse, der Zeitpunkt zählt</text>
+  <text x="112" y="268" class="mid ts fc tb">pulses, timing matters</text>
 </g>
 <g ${L(1, 'up', { d: 4 })}>
-  <text x="300" y="242" class="mid tl tb fa">0,7</text>
-  <text x="300" y="268" class="mid ts fa tb">nur eine Zahl</text>
+  <text x="300" y="242" class="mid tl tb fa">0.7</text>
+  <text x="300" y="268" class="mid ts fa tb">just one number</text>
 </g>
 <g ${L(2, 'up')}>
-  <text x="70" y="314" class="mid tl tb">86 Mrd.</text><text x="70" y="334" class="mid ts fm">Nervenzellen</text>
+  <text x="64" y="314" class="mid tl tb">86 billion</text><text x="64" y="334" class="mid ts fm">nerve cells</text>
 </g>
 <g ${L(2, 'up', { d: 2.2 })}>
-  <text x="200" y="314" class="mid tl tb">100 Billionen</text><text x="200" y="334" class="mid ts fm">Verbindungen</text>
+  <text x="200" y="314" class="mid tl tb">100 trillion</text><text x="200" y="334" class="mid ts fm">connections</text>
 </g>
 <g ${L(2, 'up', { d: 4.6 })}>
-  <text x="335" y="314" class="mid tl tb fb">20 Watt</text><text x="335" y="334" class="mid ts fm">Verbrauch</text>
+  <text x="338" y="314" class="mid tl tb fb">20 watts</text><text x="338" y="334" class="mid ts fm">power use</text>
 </g>
 <g ${L(3, 'up')}>
   <rect x="24" y="350" width="352" height="40" rx="12" class="fp"/>
-  <text x="200" y="375" class="mid ts">Übernommen: viele Einheiten, verstellbare Verbindungen</text>
+  <text x="200" y="375" class="mid ts">Borrowed: simple units, adjustable connections</text>
 </g>`;
 
 // ---------- Szene: Was am Ende herauskommt ----------
-const bars = [['blau', 62, 'a'], ['grau', 14, 'm'], ['klar', 9, 'm'], ['weit', 5, 'm'], ['grün', 1, 'm']];
+const bars = [['blue', 62, 'a'], ['clear', 14, 'm'], ['gray', 9, 'm'], ['dark', 5, 'm'], ['green', 1, 'm']];
 const sOut = `
 <g ${L(0, 'up')}>
-  <text x="34" y="64" class="tl">Der Himmel ist</text>
-  <rect x="196" y="38" width="96" height="38" rx="9" class="fn sm"/>
+  <text x="34" y="64" class="tl">The sky is</text>
+  <rect x="160" y="38" width="96" height="38" rx="9" class="fn sm"/>
 </g>
-<text x="244" y="64" class="mid tl fm" ${L(0, 'fade', { out: 2 })}>?</text>
+<text x="208" y="64" class="mid tl fm" ${L(0, 'fade', { out: 2 })}>?</text>
 <g ${L(1, 'up')}>
   ${bars.map(([w, p, c], i) => `<text x="96" y="${131 + 34 * i}" class="end tm">${w}</text><rect x="108" y="${116 + 34 * i}" width="${(p * 3).toFixed(0)}" height="20" rx="5" class="f${c}"/><text x="${116 + p * 3}" y="${131 + 34 * i}" class="ts fm">${p} %</text>`).join('')}
-  <text x="366" y="292" class="end ts fm">Beispielwerte</text>
+  <text x="366" y="292" class="end ts fm">example values</text>
 </g>
-<text x="244" y="64" class="mid tl fa tb" ${L(2, 'pop')}>blau</text>
-<text x="200" y="330" class="mid tm fb tb" ${L(2, 'up', { d: 3 })}>angehängt, dann rechnet alles noch einmal</text>
+<text x="208" y="64" class="mid tl fa tb" ${L(2, 'pop')}>blue</text>
+<text x="200" y="330" class="mid tm fb tb" ${L(2, 'up', { d: 3 })}>appended, then everything runs again</text>
 <g ${L(3, 'up')}>
   <rect x="24" y="350" width="352" height="40" rx="12" class="fp"/>
-  <text x="200" y="376" class="mid tm">Text entsteht Wort für Wort</text>
+  <text x="200" y="376" class="mid tm">Text is built word by word</text>
 </g>`;
 
 export default {
   id: '2026-11-17-ki-01',
   date: '2026-11-17',
   area: 'ki',
-  series: 'KI verstehen',
+  series: 'Understanding AI',
   episode: 1,
-  title: 'Was ein neuronales Netz wirklich rechnet',
-  hook: 'Keine Datenbank, keine Regeln: nur gewichten, addieren, knicken. Und warum ausgerechnet der Knick alles möglich macht.',
+  title: 'What a neural network actually computes',
+  hook: 'No database, no rules: just weigh, add, bend. And why the kink, of all things, makes everything possible.',
   level: 2,
   poster: 7,
+  voice: 'female',
   scenes: [
     {
-      title: 'Keine Regeln, nur Zahlen',
+      title: "No rules, just numbers",
       svg: s1,
       lines: [
-        'Wenn du mit einer KI sprichst, liegt ein Gedanke nahe: Da drin steckt eine riesige Datenbank voller Fakten und Regeln.',
-        'Tatsächlich steckt nichts davon drin. Kein gespeicherter Satz, keine einzige Wenn-dann-Regel.',
-        'Ein neuronales Netz ist eine einzige, sehr lange Rechenformel. Zahlen gehen hinein, Zahlen kommen heraus.',
-        'Ein Bild ist dafür eine Liste von Helligkeitswerten. Auch Text wird vorher in Zahlen übersetzt.',
-        'In der Formel stecken Stellschrauben, die sogenannten Gewichte. Bei großen Sprachmodellen sind es Hunderte Milliarden.',
-        'Alles, was das Modell kann, steckt in der Stellung dieser Schrauben. Heute schauen wir uns an, was die Formel genau rechnet.',
+        "When you talk to an AI, it's natural to assume there is a giant database of facts and rules inside.",
+        "In fact, there is nothing of the kind. Not a single stored sentence, not a single if-then rule.",
+        { text: "A neural network is one single, very long formula. Numbers go in, numbers come out.", de: [["neural network", "neuronales Netz"]] },
+        "An image is just a list of brightness values. Text is turned into numbers first, too.",
+        { text: "Inside the formula are adjustable dials, called weights. Large language models have hundreds of billions of them.", de: [["weights", "Gewichte"]] },
+        "Everything the model can do lies in how those dials are set. Today, we look at what the formula actually computes.",
       ],
     },
     {
-      title: 'Ein Neuron',
+      title: "One neuron",
       svg: s2,
       lines: [
-        'Der Baustein heißt Neuron. Der Name klingt nach Gehirn, die Rechnung dahinter ist aber Schulmathematik.',
-        'Ein Neuron bekommt mehrere Zahlen als Eingabe. Jede wird mit einem eigenen Gewicht multipliziert.',
-        'Das Gewicht sagt, wie wichtig dieser Eingang ist. Ein negatives Gewicht bedeutet: Dieser Eingang spricht dagegen.',
-        'Dann wird alles addiert, plus eine Extrazahl, den sogenannten Bias. Er verschiebt, ab wann das Neuron anspringt.',
-        { text: 'Im Beispiel: 0,5 mal 2, plus minus 1 mal 3, plus 1. Das ergibt minus 1.', say: 'Im Beispiel: Null Komma fünf mal zwei, plus minus eins mal drei, plus eins. Das ergibt minus eins.' },
+        "The building block is called a neuron. The name sounds like the brain, but the math behind it is school level.",
+        { text: "A neuron receives several numbers as input. Each one is multiplied by its own weight.", de: [["input", "Eingabe"]] },
+        "The weight says how much that input matters. A negative weight means: this input counts against.",
+        { text: "Then everything is added up, plus one extra number called the bias. It shifts the point at which the neuron switches on.", de: [["bias", "Bias (Verschiebung)"]] },
+        { text: "In the example: 0.5 times 2, plus minus 1 times 3, plus 1. That makes minus 1.", say: "In the example: zero point five times two, plus minus one times three, plus one. That makes minus one." },
       ],
     },
     {
-      title: 'Nur eine Karikatur des Gehirns',
+      title: "Only a caricature of the brain",
       svg: sBio,
       lines: [
-        'Wie viel Gehirn steckt da wirklich drin? Die Idee stammt von 1943 und war schon damals eine starke Vereinfachung.',
-        'Eine echte Nervenzelle feuert kurze Impulse, und es kommt auf deren Zeitpunkt an. Das künstliche Neuron kennt keine Zeit, nur eine Zahl.',
-        'Dein Gehirn hat rund 86 Milliarden Nervenzellen mit etwa hundert Billionen Verbindungen. Und es kommt mit ungefähr zwanzig Watt aus.',
-        'Übernommen wurde nur ein Prinzip: viele einfache Einheiten, deren Verbindungen unterschiedlich stark sind. Lernen heißt, diese Stärken zu verändern.',
+        { text: "How much brain is really in there? The idea dates from 1943, and even then it was a heavy simplification.", say: "How much brain is really in there? The idea dates from nineteen forty-three, and even then it was a heavy simplification." },
+        { text: "A real nerve cell fires short pulses, and their timing matters. The artificial neuron knows no time, only a single number.", de: [["nerve cell", "Nervenzelle"]] },
+        { text: "Your brain has about 86 billion nerve cells with roughly 100 trillion connections. And it runs on about 20 watts.", say: "Your brain has about eighty-six billion nerve cells with roughly one hundred trillion connections. And it runs on about twenty watts." },
+        "Only one principle was borrowed: many simple units, connected with different strengths. Learning means changing those strengths.",
       ],
     },
     {
-      title: 'Der Knick',
+      title: "The kink",
       svg: s3,
       lines: [
-        'Jetzt kommt der Schritt, auf den alles ankommt. Das Ergebnis läuft durch eine sogenannte Aktivierungsfunktion.',
-        { text: 'Die beliebteste heißt ReLU und ist verblüffend simpel: Alles unter null wird zu null. Alles darüber bleibt, wie es ist.', say: 'Die beliebteste heißt Relu und ist verblüffend simpel: Alles unter null wird zu null. Alles darüber bleibt, wie es ist.' },
-        'Als Kurve ist das eine Gerade mit einem Knick. Unsere minus eins von eben wird zu null. Das Neuron schweigt.',
-        'Es gibt Varianten mit weicherem Knick. Die Idee bleibt dieselbe.',
-        'Der Knick wirkt unscheinbar. Aber ohne ihn wäre das ganze Netz wertlos. Das ist der erste Punkt, der nicht offensichtlich ist.',
+        { text: "Now comes the step that everything depends on. The result is passed through a so-called activation function.", de: [["activation function", "Aktivierungsfunktion"]] },
+        { text: "The most popular one is called ReLU, and it is surprisingly simple: anything below zero becomes zero. Anything above stays as it is.", say: "The most popular one is called ray-loo, and it is surprisingly simple: anything below zero becomes zero. Anything above stays as it is." },
+        { text: "Drawn as a curve, that is a straight line with a kink. Our minus one from before becomes zero. The neuron stays silent.", de: [["kink", "Knick"]] },
+        "There are versions with a softer kink. The idea stays the same.",
+        "The kink looks unremarkable. But without it, the whole network would be worthless. That is the first point that is not obvious.",
       ],
     },
     {
-      title: 'Ohne Knick fällt alles zusammen',
+      title: "Without the kink, everything collapses",
       svg: s4,
       css: `.lay{transition:transform 1.2s cubic-bezier(.5,0,.2,1),opacity .5s .9s}.lay.on{transform:translateY(var(--dy));opacity:0}`,
       lines: [
-        'Stell dir ein Netz ohne Knick vor. Jede Schicht multipliziert und addiert nur.',
-        'Multiplizieren und Addieren hintereinander ergibt aber wieder nur Multiplizieren und Addieren.',
-        'Hundert solcher Schichten lassen sich deshalb mathematisch exakt zu einer einzigen zusammenfassen.',
-        'So ein Netz könnte nur gerade Zusammenhänge abbilden: doppelte Eingabe, doppelte Wirkung.',
-        'Die Welt ist aber nicht gerade. Erst der Knick macht Tiefe sinnvoll, weil jede Schicht etwas tun kann, was die vorige nicht konnte.',
+        { text: "Imagine a network without the kink. Each layer only multiplies and adds.", de: [["layer", "Schicht"]] },
+        "But multiplying and adding, done several times in a row, is still just multiplying and adding.",
+        "So a hundred such layers can be merged into a single one. Mathematically, the result is exactly the same.",
+        { text: "A network like that could only model straight-line relationships: double the input, double the effect.", de: [["straight-line (linear)", "linear"]] },
+        "But the world is not a straight line. The kink is what makes depth useful, because each layer can do something the previous one could not.",
       ],
     },
     {
-      title: 'Ein Neuron zieht eine Grenze',
+      title: "A neuron draws a boundary",
       svg: s5,
       css: `.grow{transform-box:fill-box;transform-origin:center;transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .5s;opacity:0}.grow.on{transform:scale(var(--s));opacity:1}`,
       lines: [
-        'Was bedeutet das geometrisch? Nimm zwei Eingaben und trag sie als Punkt auf einer Fläche ein.',
-        'Ein Neuron zieht durch diese Fläche eine gerade Grenze. Die Gewichte bestimmen ihre Richtung, der Bias ihre Lage.',
-        'Auf der einen Seite bleibt es stumm. Auf der anderen wird es umso lauter, je weiter der Punkt von der Grenze entfernt ist.',
-        'Ein Neuron ist also ein Detektor für eine einzige Richtung im Raum. Mehr nicht.',
-        'Eine Schicht besteht aus vielen Neuronen nebeneinander. Alle sehen dieselben Eingaben, aber jedes schaut in eine andere Richtung.',
+        "What does this mean geometrically? Take two inputs and plot them as a point on a surface.",
+        { text: "A neuron draws a straight boundary across that surface. The weights set its direction, the bias sets its position.", de: [["boundary", "Grenze"]] },
+        "On one side, the neuron stays silent. On the other, it gets louder the farther the point lies from the boundary.",
+        "So a neuron is a detector for one single direction in space. Nothing more.",
+        "A layer is many neurons side by side. They all see the same inputs, but each one looks in a different direction.",
       ],
     },
     {
-      title: 'Das Problem über Kreuz',
+      title: "The crossed-points problem",
       svg: s6,
       lines: [
-        'Und hier wird es spannend. Schau dir diese vier Punkte an: zwei blaue, zwei gelbe, über Kreuz angeordnet.',
-        'Versuch, sie mit einer einzigen geraden Linie zu trennen. Es geht nicht, egal wie du sie drehst.',
-        'Ende der Sechzigerjahre wurde bewiesen, dass ein einzelnes Neuron dieses Problem nicht lösen kann.',
-        'Auch deshalb brach die Begeisterung für neuronale Netze für viele Jahre ein. Dabei war die Lösung nur eine Schicht entfernt.',
+        "And this is where it gets interesting. Look at these four points: two blue, two yellow, arranged crosswise.",
+        { text: "Try to separate them with one single straight line. It cannot be done, however you turn it.", de: [["to separate", "trennen"]] },
+        { text: "In the late 1960s, it was proven that a single neuron cannot solve this problem.", say: "In the late nineteen sixties, it was proven that a single neuron cannot solve this problem." },
+        "That is one reason why enthusiasm for neural networks collapsed for many years. Yet the solution was just one layer away.",
       ],
     },
     {
-      title: 'Der Raum wird gefaltet',
+      title: "Folding space",
       svg: s7,
       css: css7,
       lines: [
-        'Die Lösung ist eine Schicht davor, und du kannst sie dir mit einem Blatt Papier vorstellen.',
-        'Falte das Blatt entlang der Diagonale durch die beiden blauen Punkte. Die gelben Punkte liegen jetzt genau aufeinander.',
-        'Im gefalteten Blatt reicht eine einzige gerade Grenze: nah an der Faltkante blau, weiter weg gelb.',
-        'Genau das leisten zwei Neuronen mit Knick. Jedes misst den Abstand zur Diagonale, eines auf der einen Seite, eines auf der anderen.',
-        'Das ist das Grundprinzip jedes neuronalen Netzes: Schicht für Schicht den Raum so verbiegen, bis das Problem einfach wird.',
+        "The solution is one more layer in front, and you can picture it with a sheet of paper.",
+        { text: "Fold the sheet along the diagonal through the two blue points. The yellow points now lie exactly on top of each other.", de: [["to fold", "falten"]] },
+        "In the folded sheet, one straight boundary is enough: close to the fold is blue, farther away is yellow.",
+        "That is exactly what two neurons with a kink do. Each measures the distance from the diagonal, one on each side.",
+        "This is the basic principle of every neural network: bend the space, layer by layer, until the problem becomes easy.",
       ],
     },
     {
-      title: 'Viele Knicke ergeben jede Form',
+      title: "Many kinks make any shape",
       svg: s8,
       lines: [
-        'Das lässt sich verallgemeinern. Jedes Neuron steuert einen Knick bei.',
-        'Mit zwei Knicken triffst du eine Kurve nur grob. Mit acht schon ziemlich gut. Mit tausend siehst du keinen Unterschied mehr.',
-        'Es ist mathematisch bewiesen: Mit genügend Neuronen lässt sich praktisch jeder Zusammenhang ohne Sprünge beliebig genau nachbauen.',
-        'Der Haken: Der Beweis sagt nur, dass passende Gewichte existieren. Er sagt nicht, wie man sie findet.',
-        'Das Finden ist das eigentliche Kunststück. Es heißt Training, und darum geht es in der nächsten KI-Folge.',
+        "This idea generalizes. Every neuron contributes one kink.",
+        "With two kinks, you hit a curve only roughly. With eight, quite well. With a thousand, you can no longer see a difference.",
+        { text: "It is mathematically proven: with enough neurons, you can rebuild practically any relationship without jumps, as precisely as you like.", de: [["proof", "Beweis"]] },
+        "The catch: the proof only says that suitable weights exist. It does not say how to find them.",
+        { text: "Finding them is the real trick. It is called training, and that is the topic of the next AI episode.", de: [["training", "Training (Lernen)"]] },
       ],
     },
     {
-      title: 'Tiefe schlägt Breite',
+      title: "Depth beats width",
       svg: s9,
       lines: [
-        'Warum baut man Netze tief, mit vielen Schichten hintereinander, statt eine einzige riesige Schicht zu nehmen?',
-        'Denk wieder an das Papier. Einmal falten ergibt zwei Lagen, zweimal vier. Nach zehn Faltungen sind es über tausend.',
-        'Jede Schicht faltet, was die vorigen schon gefaltet haben. Mit der Tiefe kann sich die Ausdruckskraft vervielfachen, mit der Breite wächst sie nur gemächlich.',
-        { text: 'Deshalb heißt das Feld Deep Learning. Tiefe ist kein Modewort, sondern der Trick, mit wenigen Bauteilen sehr komplexe Formen zu bilden.' },
+        "Why are networks built deep, with many layers in a row, instead of one single huge layer?",
+        "Think of the paper again. One fold gives two layers, two folds give four. After ten folds, there are more than a thousand.",
+        { text: "Each layer folds what the earlier ones already folded. With depth, expressive power can multiply. With width, it only grows slowly.", de: [["depth", "Tiefe"], ["width", "Breite"]] },
+        "That is why the field is called deep learning. Depth is not a buzzword. It is the trick for building very complex shapes from few parts.",
       ],
     },
     {
-      title: 'Was die Schichten lernen',
+      title: "What the layers learn",
       svg: s10,
       lines: [
-        'Was dabei in den Schichten entsteht, kann man sichtbar machen. Bei Netzen, die Bilder erkennen, zeigt sich immer wieder dasselbe Muster.',
-        'Die ersten Schichten reagieren auf Kanten und Farbübergänge. Die mittleren auf Texturen und Teile, etwa ein Auge oder ein Rad.',
-        'Die hinteren Schichten reagieren auf ganze Objekte. Niemand hat das einprogrammiert. Diese Hierarchie entsteht beim Training von selbst.',
-        'Das ist vielleicht das Erstaunlichste: Wir bauen nur die leere Formel. Was die einzelnen Schrauben bedeuten, findet das Netz selbst heraus.',
+        "What forms inside the layers can be made visible. In networks that recognize images, the same pattern shows up again and again.",
+        { text: "The early layers respond to edges and color changes. The middle ones respond to textures and parts, such as an eye or a wheel.", de: [["edges", "Kanten"]] },
+        "The late layers respond to whole objects. Nobody programmed that. This hierarchy emerges by itself during training.",
+        "This may be the most astonishing part: we only build the empty formula. What each dial means, the network works out on its own.",
       ],
     },
     {
-      title: 'Von vier Punkten zu Sprache',
+      title: "From four points to language",
       svg: s11,
       css: css11,
       lines: [
-        'Und was hat das mit Sprache zu tun? Mehr, als man denkt.',
-        'Auch ein Wort wird zuerst in eine Liste von Zahlen übersetzt, also in einen Punkt. Nur liegt der in einem Raum mit Tausenden Richtungen statt zwei.',
-        'Die Schichten verbiegen diesen Raum, bis Dinge mit ähnlicher Bedeutung nah beieinander liegen.',
-        'Ein Sprachmodell macht im Kern dasselbe wie unser Mini-Netz. Nur mit Hunderten Milliarden Gewichten statt neun.',
-        'Dazu kommen einige Zusatzbauteile, vor allem die sogenannte Attention. Die Grundrechnung bleibt: gewichten, addieren, knicken.',
+        "And what does this have to do with language? More than you might think.",
+        "A word is also first turned into a list of numbers, so it becomes a point. Only this point lies in a space with thousands of directions instead of two.",
+        { text: "The layers bend this space until things with similar meaning end up close together.", de: [["meaning", "Bedeutung"]] },
+        "At its core, a language model does the same as our mini network. Just with hundreds of billions of weights instead of nine.",
+        { text: "There are some extra parts, above all the so-called attention. But the basic computation stays: weigh, add, bend.", de: [["attention", "Attention (Aufmerksamkeit)"]] },
       ],
     },
     {
-      title: 'Was am Ende herauskommt',
+      title: "What comes out at the end",
       svg: sOut,
       lines: [
-        'Was kommt bei einem Sprachmodell am Ende heraus? Kein fertiger Satz, sondern wieder eine Liste von Zahlen.',
-        'Für jedes mögliche nächste Wort steht dort eine Wahrscheinlichkeit. Nach „Der Himmel ist“ zum Beispiel: „blau“ sehr hoch, „grün“ sehr niedrig.',
-        'Aus dieser Liste wird ein Wort gezogen und hinten angehängt. Dann rechnet die ganze Formel noch einmal, für das nächste Wort.',
-        'Ein langer Text entsteht also Wort für Wort, durch Tausende Durchläufe derselben Formel. Wie das genau funktioniert, bekommt eine eigene Folge.',
+        "What comes out of a language model at the end? Not a finished sentence, but once again a list of numbers.",
+        { text: "For every possible next word, it holds a probability. After “The sky is”, for example: “blue” very high, “green” very low.", de: [["probability", "Wahrscheinlichkeit"]] },
+        "One word is drawn from this list and appended. Then the whole formula runs again, for the next word.",
+        "So a long text is built word by word, through thousands of runs of the same formula. How that works in detail gets its own episode.",
       ],
     },
     {
-      title: 'Was daraus folgt',
+      title: "What follows from this",
       svg: s12,
       lines: [
-        'Daraus folgen drei Dinge, die erklären, warum sich KI so verhält, wie sie sich verhält.',
-        'Erstens: Wissen liegt nicht an einem Ort. Es ist über Millionen Gewichte verschmiert. Deshalb lässt sich ein Fehler nicht einfach löschen wie eine Zeile in einer Datenbank.',
-        'Zweitens: Das Netz schlägt nichts nach, es rechnet. Auch dort, wo es nie Beispiele gesehen hat, rechnet es einfach weiter. Das ist die Wurzel von Halluzinationen.',
-        'Drittens: Dieselbe Eigenschaft ist seine Stärke. Weil Ähnliches nah beieinander liegt, kommt es auch mit Fällen zurecht, die es nie gesehen hat.',
-        'Merk dir drei Wörter: gewichten, addieren, knicken. In der nächsten KI-Folge schauen wir uns an, wie ein Netz seine Gewichte selbst findet.',
+        "Three things follow from this. They explain why AI behaves the way it does.",
+        "First: knowledge does not sit in one place. It is smeared across millions of weights. That is why you cannot simply delete a mistake like a row in a database.",
+        { text: "Second: the network looks nothing up, it computes. Even where it has never seen examples, it just keeps computing. That is the root of hallucinations.", de: [["hallucination", "Halluzination"]] },
+        { text: "Third: the same property is its strength. Because similar things lie close together, it can handle cases it has never seen.", de: [["to generalize", "verallgemeinern"]] },
+        "Remember three words: weigh, add, bend. In the next AI episode, we look at how a network finds its weights by itself.",
       ],
     },
   ],
   takeaways: [
-    'Ein neuronales Netz ist eine einzige lange Formel mit verstellbaren Zahlen (Gewichten). Es enthält keine Regeln und keine gespeicherten Sätze.',
-    'Ein Neuron rechnet: Eingaben mal Gewichte, alles addieren, plus Bias, dann durch den Knick (ReLU: unter null wird null).',
-    'Ohne den Knick ließen sich beliebig viele Schichten zu einer einzigen zusammenfassen. Erst er macht Tiefe sinnvoll.',
-    'Geometrisch zieht jedes Neuron eine Grenze. Schichten falten den Raum, bis ein schwieriges Problem mit einer geraden Grenze lösbar ist.',
-    'Genügend Neuronen können fast jeden Zusammenhang nachbilden. Die passenden Gewichte zu finden, ist die eigentliche Schwierigkeit (Training).',
-    'Wissen liegt verteilt in den Gewichten. Das erklärt, warum Fehler schwer zu löschen sind, warum Modelle halluzinieren und warum sie verallgemeinern können.',
+    "A neural network is one long formula with adjustable numbers (weights). It contains no rules and no stored sentences.",
+    "A neuron computes: inputs times weights, add everything up, add the bias, then pass it through the kink (ReLU: below zero becomes zero).",
+    "Without the kink, any number of layers could be merged into a single one. The kink is what makes depth useful.",
+    "Geometrically, each neuron draws a boundary. Layers fold the space until a hard problem can be solved with one straight boundary.",
+    "Enough neurons can rebuild almost any relationship. Finding the right weights is the real difficulty (training).",
+    "Knowledge is spread across the weights. That explains why mistakes are hard to delete, why models hallucinate, and why they can generalize.",
   ],
   sources: [
-    'Minsky & Papert: Perceptrons (1969), zur Unlösbarkeit von XOR für ein einzelnes Neuron',
-    'Cybenko (1989) und Hornik (1991): universeller Approximationssatz',
-    'Montúfar, Pascanu, Cho & Bengio (2014): On the Number of Linear Regions of Deep Neural Networks',
-    'Zeiler & Fergus (2014): Visualizing and Understanding Convolutional Networks',
-    'Nair & Hinton (2010): Rectified Linear Units Improve Restricted Boltzmann Machines',
-    'McCulloch & Pitts (1943): A Logical Calculus of the Ideas Immanent in Nervous Activity',
-    'Azevedo et al. (2009): Zahl der Nervenzellen im menschlichen Gehirn',
+    "Minsky & Papert: Perceptrons (1969), on why a single neuron cannot solve XOR",
+    "Cybenko (1989) and Hornik (1991): universal approximation theorem",
+    "Montúfar, Pascanu, Cho & Bengio (2014): On the Number of Linear Regions of Deep Neural Networks",
+    "Zeiler & Fergus (2014): Visualizing and Understanding Convolutional Networks",
+    "Nair & Hinton (2010): Rectified Linear Units Improve Restricted Boltzmann Machines",
+    "McCulloch & Pitts (1943): A Logical Calculus of the Ideas Immanent in Nervous Activity",
+    "Azevedo et al. (2009): number of nerve cells in the human brain",
   ],
 };

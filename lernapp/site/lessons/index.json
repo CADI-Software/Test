@@ -4,39 +4,40 @@
    "id": "2026-11-17-ki-01",
    "date": "2026-11-17",
    "area": "ki",
-   "series": "KI verstehen",
+   "series": "Understanding AI",
    "episode": 1,
-   "title": "Was ein neuronales Netz wirklich rechnet",
-   "hook": "Keine Datenbank, keine Regeln: nur gewichten, addieren, knicken. Und warum ausgerechnet der Knick alles möglich macht.",
-   "duration": 437.21,
-   "audio": true
+   "title": "What a neural network actually computes",
+   "hook": "No database, no rules: just weigh, add, bend. And why the kink, of all things, makes everything possible.",
+   "duration": 423.38,
+   "audio": true,
+   "voice": "female"
   }
  ],
  "upcoming": [
   {
    "area": "adhs",
-   "title": "Kein Mangel an Aufmerksamkeit: was im ADHS-Gehirn anders reguliert wird"
+   "title": "Not a lack of attention: what the ADHD brain regulates differently"
   },
   {
    "area": "innovation",
-   "title": "Festkörperbatterien: warum sie so schwer zu bauen sind"
+   "title": "Solid-state batteries: why they are so hard to build"
   },
   {
    "area": "business",
-   "title": "Positionierung: warum der kleinere Markt der größere Hebel ist"
+   "title": "Positioning: why the smaller market is the bigger lever"
   },
   {
    "area": "ki",
-   "title": "Wie ein Netz lernt: Fehler, Gefälle, Backpropagation"
+   "title": "How a network learns: error, slope, backpropagation"
   },
   {
    "area": "adhs",
-   "title": "Zeitblindheit: warum es nur „jetzt“ und „nicht jetzt“ gibt"
+   "title": "Time blindness: why there is only “now” and “not now”"
   },
   {
    "area": "bonus",
-   "title": "Überraschungsthema aus deinem Feedback"
+   "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-17T08:03:38.746Z"
+ "updated": "2026-11-17T08:41:47.917Z"
 }

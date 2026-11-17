@@ -97,6 +97,17 @@ svg.board{font-family:var(--font-body);font-size:16px;fill:var(--k-ink)}
 .board .float{animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .stage.paused .board .scene *{animation-play-state:paused}
+#stage{border-radius:18px 18px 0 0}
+.terms{width:100%;max-width:min(100%,62vh);margin:-12px auto 0;min-height:48px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;padding:9px 12px 11px;background:var(--k-bg);border:1px solid var(--k-panel);border-top:0;border-radius:0 0 18px 18px;color:var(--k-ink);font-size:13px;line-height:1.3}
+.terms-label{color:var(--k-mut);font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.term{display:inline-flex;flex-wrap:wrap;gap:0 6px;padding:4px 10px;border-radius:999px;background:var(--k-panel);animation:termIn .45s ease both}
+.term span{color:var(--k-mut)}
+.term b{color:var(--k-b);font-weight:700}
+@keyframes termIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.gloss{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
+.gloss li{display:contents}
+.gloss span{color:var(--muted)}
+.gloss b{font-weight:600}
 .stage-btn{position:absolute;inset:0;border:0;background:transparent;padding:0;display:grid;place-items:center}
 .bigplay{width:76px;height:76px;border-radius:50%;background:var(--k-ink);color:var(--k-bg);display:grid;place-items:center;transition:opacity .2s,transform .2s;box-shadow:0 8px 30px rgba(0,0,0,.35)}
 .bigplay svg{width:30px;height:30px;margin-left:4px}
@@ -216,6 +227,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
           <span class="bigplay"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
         </button>
       </div>
+      <div class="terms" id="terms" aria-live="polite"><span class="terms-label">Deutsch</span></div>
       <div class="cap">
         <div class="eyebrow" id="cap-scene"></div>
         <p class="cap-text" id="cap-text"></p>
@@ -267,6 +279,11 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     <section class="card" id="take-sec">
       <h2>Zum Mitnehmen</h2>
       <ol class="take" id="take"></ol>
+    </section>
+
+    <section class="card" id="gloss-sec" hidden>
+      <h2>Fachbegriffe</h2>
+      <ul class="gloss" id="gloss"></ul>
     </section>
 
     <details id="tr-box"><summary>Mitlesen und springen</summary><div class="tr" id="tr"></div></details>
@@ -456,6 +473,7 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
       P.line = li; const f = P.flat[li];
       $('cap-scene').textContent = (f.s + 1) + ' / ' + l.scenes.length + ' · ' + l.scenes[f.s].title;
       $('cap-text').textContent = f.text;
+      paintTerms(f.s, li);
       const tr = $('tr'); const old = tr.querySelector('.cur'); if (old) old.classList.remove('cur');
       const cur = tr.querySelector('[data-i="' + li + '"]'); if (cur) cur.classList.add('cur');
     }
@@ -463,6 +481,20 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     if (!P.drag) paintScrub(t);
     if (!P.done && t >= l.duration * 0.92) markDone();
     if (performance.now() - P.saved > 4000) { P.saved = performance.now(); store.set('pos:' + l.id, Math.round(t)); }
+  }
+  function paintTerms(si, li) {
+    const list = [];
+    for (let i = 0; i <= li; i++) { const x = P.flat[i]; if (x.s === si && x.de) for (const d of x.de) list.push(d); }
+    const key = si + ':' + list.length;
+    if (P.termKey === key) return;
+    const grew = P.termKey && P.termKey.split(':')[0] === String(si) ? Number(P.termKey.split(':')[1]) : 0;
+    P.termKey = key;
+    const box = $('terms'); box.textContent = ''; box.append(el('span', 'terms-label', 'Deutsch'));
+    list.slice(-3).forEach((d, i, arr) => {
+      const c = el('span', 'term'); c.append(el('span', '', d[0] + ' ='), el('b', '', d[1]));
+      if (list.length - arr.length + i < grew) c.style.animation = 'none';
+      box.append(c);
+    });
   }
   function paintScrub(t) {
     const pct = Math.min(100, (t / P.l.duration) * 100);
@@ -551,7 +583,11 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
     catch { $('cap-text').textContent = 'Diese Folge lässt sich gerade nicht laden.'; return; }
     if (location.hash !== '#folge-' + id) return;
     P.l = l; P.done = seen.has(id); P.flat = [];
-    l.scenes.forEach((s, si) => s.lines.forEach((x, k) => P.flat.push({ t: x.t, text: x.text, s: si, k })));
+    l.scenes.forEach((s, si) => s.lines.forEach((x, k) => P.flat.push({ t: x.t, text: x.text, s: si, k, de: x.de })));
+    P.termKey = '';
+    const gl = $('gloss'); gl.textContent = ''; const seenT = new Set();
+    P.flat.forEach((x) => (x.de || []).forEach((d) => { if (seenT.has(d[0])) return; seenT.add(d[0]); const li = el('li'); li.append(el('span', '', d[0]), el('b', '', d[1])); gl.append(li); }));
+    $('gloss-sec').hidden = !seenT.size;
     P.rate = store.get('rate', 1); if (!RATES.includes(P.rate)) P.rate = 1;
     $('speed').textContent = String(P.rate).replace('.', ',') + '×';
     const last = store.get('pos:' + id, 0);

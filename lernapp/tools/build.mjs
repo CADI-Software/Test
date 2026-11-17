@@ -5,7 +5,7 @@
 //                content/<id>/narration/sNN.txt (Sprechtext je Szene) und endet.
 //   --no-audio   baut ohne Ton (Player läuft dann im stummen Untertitel-Modus).
 //
-// Ton wird aus content/<id>/audio/sNN.(mp3|wav) gelesen, eine Datei je Szene.
+// Ton wird aus content/<id>/audio/sNN.(mp3|wav) gelesen, eine Datei je Szene (tools/tts_kokoro.py).
 // Liegt daneben sNN.json mit {"starts":[...]}, gelten diese Zeilenzeiten exakt;
 // sonst werden die Zeilenanfänge an den Sprechpausen der Aufnahme ausgerichtet.
 //
@@ -34,11 +34,14 @@ need(lesson.id === id, `id "${lesson.id}" passt nicht zum Ordner "${id}"`);
 need(/^\d{4}-\d{2}-\d{2}$/.test(lesson.date || ''), 'date fehlt (JJJJ-MM-TT)');
 need(AREAS.includes(lesson.area), `area muss eines von ${AREAS.join(', ')} sein`);
 need(lesson.title && lesson.hook, 'title und hook fehlen');
+need(['female', 'male'].includes(lesson.voice), 'voice muss female oder male sein (wechselt von Folge zu Folge)');
 need(Array.isArray(lesson.scenes) && lesson.scenes.length >= 3, 'mindestens 3 Szenen');
 const scenes = (lesson.scenes || []).map((s, si) => {
   const lines = (s.lines || []).map((l) => (typeof l === 'string' ? { text: l } : l));
   need(lines.length > 0, `Szene ${si + 1}: keine Zeilen`);
   lines.forEach((l, li) => {
+    need(!/\d/.test(l.say || l.text || ''), `Szene ${si + 1}, Zeile ${li + 1}: Ziffern im Sprechtext. Zahlen in "say" als Wörter ausschreiben`);
+    need(!l.de || (Array.isArray(l.de) && l.de.every((x) => Array.isArray(x) && x.length === 2 && x.every((y) => typeof y === 'string' && y.length <= 40))), `Szene ${si + 1}, Zeile ${li + 1}: de muss eine Liste aus [englisch, deutsch]-Paaren sein`);
     need(l.text && l.text.length <= 190, `Szene ${si + 1}, Zeile ${li + 1}: Text fehlt oder ist länger als 190 Zeichen (${(l.text || '').length})`);
   });
   const svg = s.svg || '';
@@ -60,6 +63,9 @@ scenes.forEach((s, si) => {
   }
   if (stack.length) errors.push(`Szene ${si + 1}: nicht geschlossen: ${stack.join(', ')}`);
 });
+const termCount = scenes.reduce((n, s) => n + s.lines.reduce((m, l) => m + (l.de ? l.de.length : 0), 0), 0);
+if (termCount < 6) errors.push(`nur ${termCount} deutsche Fachbegriffe (de: [[englisch, deutsch]] an den Zeilen); mindestens 6 je Folge`);
+scenes.forEach((s, si) => { const n = s.lines.reduce((m, l) => m + (l.de ? l.de.length : 0), 0); if (n > 3) errors.push(`Szene ${si + 1}: ${n} Fachbegriffe, höchstens 3 je Szene`); });
 if (errors.length) { console.error('Fehler:\n- ' + errors.join('\n- ')); process.exit(1); }
 
 const say = (l) => l.say || l.text;
@@ -126,7 +132,7 @@ scenes.forEach((s, i) => {
     starts = s.lines.map((l) => { const t = acc; acc += say(l).length / 15.5 + 0.45; return t; });
     dur = acc + SCENE_GAP;
   }
-  s.lines = s.lines.map((l, k) => ({ t: Math.round((t0 + starts[k]) * 100) / 100, text: l.text }));
+  s.lines = s.lines.map((l, k) => ({ t: Math.round((t0 + starts[k]) * 100) / 100, text: l.text, ...(l.de && l.de.length ? { de: l.de } : {}) }));
   s.t = Math.round(t0 * 100) / 100;
   t0 += dur;
 });
@@ -144,7 +150,7 @@ const duration = Math.round(t0 * 100) / 100;
 const built = {
   id, date: lesson.date, area: lesson.area, series: lesson.series || '', episode: lesson.episode || 0,
   title: lesson.title, hook: lesson.hook, level: lesson.level || 2, poster: lesson.poster || 0,
-  duration, audio: hasAudio ? 'audio.mp3' : '', voice: hasAudio ? (process.env.VOICE || '') : '',
+  duration, audio: hasAudio ? 'audio.mp3' : '', voice: hasAudio ? (lesson.voice || '') : '',
   scenes, takeaways: lesson.takeaways || [], sources: lesson.sources || [],
 };
 fs.writeFileSync(path.join(outDir, 'lesson.json'), JSON.stringify(built));
@@ -154,7 +160,7 @@ const indexFile = path.join(root, 'site', 'lessons', 'index.json');
 const index = fs.existsSync(indexFile) ? JSON.parse(fs.readFileSync(indexFile, 'utf8')) : { lessons: [] };
 const planFile = path.join(root, 'content', 'plan.json');
 const plan = fs.existsSync(planFile) ? JSON.parse(fs.readFileSync(planFile, 'utf8')) : { upcoming: [] };
-const entry = { id, date: built.date, area: built.area, series: built.series, episode: built.episode, title: built.title, hook: built.hook, duration, audio: !!built.audio };
+const entry = { id, date: built.date, area: built.area, series: built.series, episode: built.episode, title: built.title, hook: built.hook, duration, audio: !!built.audio, voice: built.voice };
 index.lessons = [entry, ...index.lessons.filter((l) => l.id !== id)].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 index.upcoming = plan.upcoming || [];
 index.updated = new Date().toISOString();

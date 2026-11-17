@@ -1,10 +1,28 @@
 {
-  "upcoming": [
-    { "area": "adhs", "title": "Kein Mangel an Aufmerksamkeit: was im ADHS-Gehirn anders reguliert wird" },
-    { "area": "innovation", "title": "Festkörperbatterien: warum sie so schwer zu bauen sind" },
-    { "area": "business", "title": "Positionierung: warum der kleinere Markt der größere Hebel ist" },
-    { "area": "ki", "title": "Wie ein Netz lernt: Fehler, Gefälle, Backpropagation" },
-    { "area": "adhs", "title": "Zeitblindheit: warum es nur „jetzt“ und „nicht jetzt“ gibt" },
-    { "area": "bonus", "title": "Überraschungsthema aus deinem Feedback" }
-  ]
+ "upcoming": [
+  {
+   "area": "adhs",
+   "title": "Not a lack of attention: what the ADHD brain regulates differently"
+  },
+  {
+   "area": "innovation",
+   "title": "Solid-state batteries: why they are so hard to build"
+  },
+  {
+   "area": "business",
+   "title": "Positioning: why the smaller market is the bigger lever"
+  },
+  {
+   "area": "ki",
+   "title": "How a network learns: error, slope, backpropagation"
+  },
+  {
+   "area": "adhs",
+   "title": "Time blindness: why there is only “now” and “not now”"
+  },
+  {
+   "area": "bonus",
+   "title": "A surprise topic based on your feedback"
+  }
+ ]
 }
