@@ -1,10 +1,6 @@
 {
  "upcoming": [
   {
-   "area": "ki",
-   "title": "AI doom: which catastrophe scenarios experts take seriously, and why"
-  },
-  {
    "area": "adhs",
    "title": "Not a lack of attention: what the ADHD brain regulates differently"
   },
@@ -13,20 +9,24 @@
    "title": "Solid-state batteries: why they are so hard to build"
   },
   {
+   "area": "ki",
+   "title": "AI risk, part 2: preparing for an AI-shaped decade"
+  },
+  {
    "area": "business",
    "title": "Positioning: why the smaller market is the bigger lever"
   },
   {
    "area": "ki",
-   "title": "Preparing for an AI-shaped decade: what you can actually do"
-  },
-  {
-   "area": "ki",
-   "title": "How a network learns: error, slope, backpropagation"
+   "title": "How a network learns, explained slowly with one example"
   },
   {
    "area": "adhs",
    "title": "Time blindness: why there is only “now” and “not now”"
+  },
+  {
+   "area": "bonus",
+   "title": "A surprise topic based on your feedback"
   }
  ]
 }

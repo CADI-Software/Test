@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-18-ki-02",
+   "date": "2026-11-18",
+   "area": "ki",
+   "series": "AI risk",
+   "episode": 1,
+   "title": "AI doom: what experts actually worry about",
+   "hook": "Not evil robots. A very capable system with a slightly wrong goal. Who is worried, what speaks against it, and how to think about it calmly.",
+   "duration": 496.68,
+   "audio": true,
+   "voice": "male"
+  },
+  {
    "id": "2026-11-17-ki-01",
    "date": "2026-11-17",
    "area": "ki",
@@ -15,10 +27,6 @@
  ],
  "upcoming": [
   {
-   "area": "ki",
-   "title": "AI doom: which catastrophe scenarios experts take seriously, and why"
-  },
-  {
    "area": "adhs",
    "title": "Not a lack of attention: what the ADHD brain regulates differently"
   },
@@ -27,21 +35,25 @@
    "title": "Solid-state batteries: why they are so hard to build"
   },
   {
+   "area": "ki",
+   "title": "AI risk, part 2: preparing for an AI-shaped decade"
+  },
+  {
    "area": "business",
    "title": "Positioning: why the smaller market is the bigger lever"
   },
   {
    "area": "ki",
-   "title": "Preparing for an AI-shaped decade: what you can actually do"
-  },
-  {
-   "area": "ki",
-   "title": "How a network learns: error, slope, backpropagation"
+   "title": "How a network learns, explained slowly with one example"
   },
   {
    "area": "adhs",
    "title": "Time blindness: why there is only “now” and “not now”"
+  },
+  {
+   "area": "bonus",
+   "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-17T22:39:11.341Z"
+ "updated": "2026-11-18T04:29:51.024Z"
 }

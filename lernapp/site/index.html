@@ -98,13 +98,15 @@ svg.board{font-family:var(--font-body);font-size:16px;fill:var(--k-ink)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .stage.paused .board .scene *{animation-play-state:paused}
 #stage{border-radius:18px 18px 0 0}
-.terms{width:100%;max-width:min(100%,62vh);margin:-12px auto 0;min-height:48px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;padding:9px 12px 11px;background:var(--k-bg);border:1px solid var(--k-panel);border-top:0;border-radius:0 0 18px 18px;color:var(--k-ink);font-size:13px;line-height:1.3}
+.terms{width:100%;max-width:min(100%,62vh);margin:-12px auto 0;min-height:48px;display:flex;gap:8px;align-items:center;padding:7px 8px 7px 12px;background:var(--k-bg);border:1px solid var(--k-panel);border-top:0;border-radius:0 0 18px 18px;color:var(--k-ink);font-size:13px;line-height:1.3}
 .terms-label{color:var(--k-mut);font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
 .term{display:inline-flex;flex-wrap:wrap;gap:0 6px;padding:4px 10px;border-radius:999px;background:var(--k-panel);animation:termIn .45s ease both}
 .term span{color:var(--k-mut)}
 .term b{color:var(--k-b);font-weight:700}
 @keyframes termIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.fs-btn{position:absolute;top:8px;right:8px;z-index:3;width:42px;height:42px;border-radius:12px;border:1px solid var(--k-panel2);background:rgba(15,24,48,.72);color:var(--k-ink);display:grid;place-items:center;padding:0}
+.fs-btn{flex:none;width:40px;height:34px;border-radius:10px;border:1px solid var(--k-panel2);background:var(--k-panel);color:var(--k-ink);display:grid;place-items:center;padding:0}
+.terms-list{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.player.fs .terms-list{justify-content:center}
 .fs-btn svg{width:20px;height:20px}
 /* Handy hochkant: Tafel randlos über die ganze Breite */
 @media (max-width:600px) and (orientation:portrait) and (min-height:700px){
@@ -276,11 +278,12 @@ summary{font-weight:700;padding:14px 0;cursor:pointer}
         <button class="stage-btn" id="stage-btn" type="button" aria-label="Abspielen oder pausieren">
           <span class="bigplay"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
         </button>
+      </div>
+      <div class="terms"><div class="terms-list" id="terms" aria-live="polite"><span class="terms-label">Deutsch</span></div>
         <button class="fs-btn" id="fs-btn" type="button" aria-label="Vollbild">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="fs-ico"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
         </button>
       </div>
-      <div class="terms" id="terms" aria-live="polite"><span class="terms-label">Deutsch</span></div>
       <div class="cap">
         <div class="eyebrow" id="cap-scene"></div>
         <p class="cap-text" id="cap-text"></p>
