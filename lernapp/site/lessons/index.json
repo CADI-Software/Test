@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-19-adhs-01",
+   "date": "2026-11-19",
+   "area": "adhs",
+   "series": "Understanding ADHD",
+   "episode": 1,
+   "title": "Not a lack of attention: what the ADHD brain regulates differently",
+   "hook": "Hyperfocus for six hours, but no start on the tax form. The name is misleading: attention is there, the steering is not.",
+   "duration": 423.5,
+   "audio": true,
+   "voice": "female"
+  },
+  {
    "id": "2026-11-18-ki-02",
    "date": "2026-11-18",
    "area": "ki",
@@ -27,10 +39,6 @@
  ],
  "upcoming": [
   {
-   "area": "adhs",
-   "title": "Not a lack of attention: what the ADHD brain regulates differently"
-  },
-  {
    "area": "innovation",
    "title": "Solid-state batteries: why they are so hard to build"
   },
@@ -43,17 +51,21 @@
    "title": "Positioning: why the smaller market is the bigger lever"
   },
   {
+   "area": "adhs",
+   "title": "Time blindness: how ADHD bends the sense of time"
+  },
+  {
    "area": "ki",
-   "title": "How a network learns, explained slowly with one example"
+   "title": "How a network learns, explained with one example"
   },
   {
    "area": "adhs",
-   "title": "Time blindness: why there is only “now” and “not now”"
+   "title": "ADHD in love and relationships"
   },
   {
    "area": "bonus",
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-18T04:29:51.024Z"
+ "updated": "2026-11-19T04:30:06.045Z"
 }

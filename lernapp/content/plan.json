@@ -1,10 +1,6 @@
 {
  "upcoming": [
   {
-   "area": "adhs",
-   "title": "Not a lack of attention: what the ADHD brain regulates differently"
-  },
-  {
    "area": "innovation",
    "title": "Solid-state batteries: why they are so hard to build"
   },
@@ -17,12 +13,16 @@
    "title": "Positioning: why the smaller market is the bigger lever"
   },
   {
+   "area": "adhs",
+   "title": "Time blindness: how ADHD bends the sense of time"
+  },
+  {
    "area": "ki",
-   "title": "How a network learns, explained slowly with one example"
+   "title": "How a network learns, explained with one example"
   },
   {
    "area": "adhs",
-   "title": "Time blindness: why there is only “now” and “not now”"
+   "title": "ADHD in love and relationships"
   },
   {
    "area": "bonus",
