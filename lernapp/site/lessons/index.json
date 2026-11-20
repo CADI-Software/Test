@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-20-innovation-01",
+   "date": "2026-11-20",
+   "area": "innovation",
+   "series": "How it works",
+   "episode": 1,
+   "title": "Solid-state batteries: why they are so hard to build",
+   "hook": "Twice the range, always five years away. The battery already exists in buses. Four hard problems keep it out of your car.",
+   "duration": 458.71,
+   "audio": true,
+   "voice": "male"
+  },
+  {
    "id": "2026-11-19-adhs-01",
    "date": "2026-11-19",
    "area": "adhs",
@@ -39,10 +51,6 @@
  ],
  "upcoming": [
   {
-   "area": "innovation",
-   "title": "Solid-state batteries: why they are so hard to build"
-  },
-  {
    "area": "ki",
    "title": "AI risk, part 2: preparing for an AI-shaped decade"
   },
@@ -59,6 +67,10 @@
    "title": "How a network learns, explained with one example"
   },
   {
+   "area": "innovation",
+   "title": "Fusion power: what the recent records do and do not mean"
+  },
+  {
    "area": "adhs",
    "title": "ADHD in love and relationships"
   },
@@ -67,5 +79,5 @@
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-19T04:30:06.045Z"
+ "updated": "2026-11-20T04:27:50.898Z"
 }

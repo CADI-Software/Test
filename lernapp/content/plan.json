@@ -1,10 +1,6 @@
 {
  "upcoming": [
   {
-   "area": "innovation",
-   "title": "Solid-state batteries: why they are so hard to build"
-  },
-  {
    "area": "ki",
    "title": "AI risk, part 2: preparing for an AI-shaped decade"
   },
@@ -19,6 +15,10 @@
   {
    "area": "ki",
    "title": "How a network learns, explained with one example"
+  },
+  {
+   "area": "innovation",
+   "title": "Fusion power: what the recent records do and do not mean"
   },
   {
    "area": "adhs",
