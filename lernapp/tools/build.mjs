@@ -55,7 +55,7 @@ const scenes = (lesson.scenes || []).map((s, si) => {
   if (s.quiz) {
     const q = s.quiz, o = q.options || [];
     need(q.q && q.q.length <= 170, `Szene ${si + 1}: Frage fehlt oder ist länger als 170 Zeichen`);
-    need(o.length >= 3 && o.length <= 4, `Szene ${si + 1}: Frage braucht 3 oder 4 Antworten`);
+    need(lesson.date >= '2026-11-21' ? o.length === 4 : (o.length >= 3 && o.length <= 4), `Szene ${si + 1}: Frage braucht genau 4 Antworten (Nutzerwunsch: schwerere Fragen)`);
     need(o.filter((x) => x.correct).length === 1, `Szene ${si + 1}: genau eine Antwort muss correct: true haben`);
     need(o.every((x) => x.text && x.text.length <= 95 && x.why && x.why.length >= 40), `Szene ${si + 1}: jede Antwort braucht text (höchstens 95 Zeichen) und why (mindestens 40 Zeichen)`);
     need(q.explain && q.explain.length >= 250, `Szene ${si + 1}: explain fehlt oder ist zu kurz (ausführliche Erklärung, mindestens 250 Zeichen)`);
@@ -81,7 +81,7 @@ scenes.forEach((s, si) => {
 const termCount = scenes.reduce((n, s) => n + s.lines.reduce((m, l) => m + (l.de ? l.de.length : 0), 0), 0);
 if (termCount < 6) errors.push(`nur ${termCount} deutsche Fachbegriffe (de: [[englisch, deutsch]] an den Zeilen); mindestens 6 je Folge`);
 const quizCount = scenes.filter((s) => s.quiz).length;
-if (quizCount < 2 || quizCount > 4) errors.push(`${quizCount} Verständnisfragen; 2 bis 4 je Folge (quiz an der Szene)`);
+if (quizCount < (lesson.date >= '2026-11-21' ? 3 : 2) || quizCount > 4) errors.push(`${quizCount} Verständnisfragen; 3 bis 4 je Folge (quiz an der Szene)`);
 scenes.forEach((s, si) => { const n = s.lines.reduce((m, l) => m + (l.de ? l.de.length : 0), 0); if (n > 3) errors.push(`Szene ${si + 1}: ${n} Fachbegriffe, höchstens 3 je Szene`); });
 if (errors.length) { console.error('Fehler:\n- ' + errors.join('\n- ')); process.exit(1); }
 

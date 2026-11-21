@@ -98,14 +98,21 @@ Letzte Szene: Folgerungen und ein Merksatz, Ausblick auf die nächste Folge der 
 
 ## Verständnisfragen
 
-- Stehen als `quiz` an der Szene, nach der gefragt wird (nie an der letzten Szene). Alles auf Englisch.
-- Verstehen und Übertragen prüfen, nicht Wiedergeben: eine neue Situation, eine Vorhersage („was passiert, wenn …“) oder eine Begründung („warum …“).
-  Keine Fangfragen, keine Detailzahlen.
-- 3 oder 4 Antworten, genau eine mit `correct: true`. Die falschen Antworten sind typische Denkfehler, keine offensichtlichen Scherzantworten.
-- Jede Antwort hat ein `why` (ein bis zwei Sätze): bei der richtigen, warum sie stimmt; bei einer falschen, was daran nicht stimmt.
+Rückmeldung des Nutzers vom 20.11.2026: „Fragen sind grundsätzlich zu einfach“ (bis dahin fast alle auf Anhieb richtig). Deshalb gilt:
+
+- Stehen als `quiz` an der Szene, nach der gefragt wird (nie an der letzten Szene). Alles auf Englisch. 3 bis 4 Fragen je Folge.
+- **Immer 4 Antworten**, genau eine mit `correct: true`.
+- **Jede falsche Antwort muss auf den ersten Blick vertretbar sein:** teilweise richtig, richtig aber nicht die Antwort auf die Frage,
+  eine zu weit gehende Verallgemeinerung, vertauschte Ursache und Wirkung oder ein Zahlen-Fehlschluss. Keine Scherz- oder Strohmann-Antworten.
+- **Die Frage verlangt Nachdenken, nicht Erinnern:** zwei Aussagen der Folge verbinden, auf einen neuen Fall mit einer Wendung anwenden,
+  Daten deuten („welcher Schluss ist am besten gestützt?“) oder eine Abwägung treffen. Nicht mit einem einzelnen Satz aus der Folge beantwortbar.
+- Mindestens eine Frage je Folge dreht sich um Zahlen oder Studienergebnisse und ihre richtige Deutung.
+- Die richtige Antwort darf nicht durch Länge, Vorsicht im Ton oder Wortwahl auffallen. Antworten ähnlich lang halten.
+- Jede Antwort hat ein `why` (ein bis zwei Sätze): bei der richtigen, warum sie stimmt; bei einer falschen, was daran stimmt und wo sie kippt.
 - `explain` ist die ausführlichere Erklärung nach einer falschen Antwort (mindestens 250 Zeichen): den Gedanken auf einem anderen Weg erklären als im Sprechtext,
-  am besten mit einem neuen Alltagsbeispiel oder Vergleich. Sie darf die richtige Antwort begründen, soll aber nicht einfach den Sprechtext wiederholen.
+  am besten mit einem neuen Alltagsbeispiel oder Vergleich.
 - Der Build mischt die Reihenfolge der Antworten selbst.
+- Quiz-Ergebnisse weiter beobachten: Sind wieder alle Fragen auf Anhieb richtig, noch eine Stufe anziehen. Sind die meisten falsch, etwas zurücknehmen.
 
 ## Die Tafel (Szenen-SVG)
 

@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-21-ki-03",
+   "date": "2026-11-21",
+   "area": "ki",
+   "series": "AI risk",
+   "episode": 2,
+   "title": "Preparing for an AI-shaped decade: what you can actually do",
+   "hook": "Nobody can forecast how this goes. You do not need to. Six moves for work, skills, money and security that pay off in every future.",
+   "duration": 418.46,
+   "audio": true,
+   "voice": "female"
+  },
+  {
    "id": "2026-11-20-innovation-01",
    "date": "2026-11-20",
    "area": "innovation",
@@ -51,10 +63,6 @@
  ],
  "upcoming": [
   {
-   "area": "ki",
-   "title": "AI risk, part 2: preparing for an AI-shaped decade"
-  },
-  {
    "area": "business",
    "title": "Positioning: why the smaller market is the bigger lever"
   },
@@ -75,9 +83,13 @@
    "title": "ADHD in love and relationships"
   },
   {
+   "area": "business",
+   "title": "Pricing: why most small companies charge too little"
+  },
+  {
    "area": "bonus",
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-20T04:27:50.898Z"
+ "updated": "2026-11-21T04:29:14.388Z"
 }

@@ -1,10 +1,6 @@
 {
  "upcoming": [
   {
-   "area": "ki",
-   "title": "AI risk, part 2: preparing for an AI-shaped decade"
-  },
-  {
    "area": "business",
    "title": "Positioning: why the smaller market is the bigger lever"
   },
@@ -23,6 +19,10 @@
   {
    "area": "adhs",
    "title": "ADHD in love and relationships"
+  },
+  {
+   "area": "business",
+   "title": "Pricing: why most small companies charge too little"
   },
   {
    "area": "bonus",
