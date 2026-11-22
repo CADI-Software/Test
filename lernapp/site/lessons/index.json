@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-22-business-01",
+   "date": "2026-11-22",
+   "area": "business",
+   "series": "Growing a company",
+   "episode": 1,
+   "title": "Positioning: why the smaller market is the bigger lever",
+   "hook": "A product for everyone is noticed by no one. What positioning really is, why narrow wins first, and the research that speaks against it.",
+   "duration": 441.05,
+   "audio": true,
+   "voice": "male"
+  },
+  {
    "id": "2026-11-21-ki-03",
    "date": "2026-11-21",
    "area": "ki",
@@ -63,10 +75,6 @@
  ],
  "upcoming": [
   {
-   "area": "business",
-   "title": "Positioning: why the smaller market is the bigger lever"
-  },
-  {
    "area": "adhs",
    "title": "Time blindness: how ADHD bends the sense of time"
   },
@@ -79,17 +87,21 @@
    "title": "Fusion power: what the recent records do and do not mean"
   },
   {
+   "area": "business",
+   "title": "Pricing: why most small companies charge too little"
+  },
+  {
    "area": "adhs",
    "title": "ADHD in love and relationships"
   },
   {
-   "area": "business",
-   "title": "Pricing: why most small companies charge too little"
+   "area": "ki",
+   "title": "Attention: how a language model decides what matters"
   },
   {
    "area": "bonus",
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-21T04:29:14.388Z"
+ "updated": "2026-11-22T04:26:33.178Z"
 }

@@ -112,6 +112,8 @@ Rückmeldung des Nutzers vom 20.11.2026: „Fragen sind grundsätzlich zu einfac
 - `explain` ist die ausführlichere Erklärung nach einer falschen Antwort (mindestens 250 Zeichen): den Gedanken auf einem anderen Weg erklären als im Sprechtext,
   am besten mit einem neuen Alltagsbeispiel oder Vergleich.
 - Der Build mischt die Reihenfolge der Antworten selbst.
+- Stand 21.11.2026 (erste Folge nach der Umstellung): 2 von 4 Fragen auf Anhieb richtig. Diese Schwierigkeit halten.
+  Dabei auf Eindeutigkeit achten: Die richtige Antwort muss sich aus der Folge sauber herleiten lassen, auch wenn die anderen verlockend klingen.
 - Quiz-Ergebnisse weiter beobachten: Sind wieder alle Fragen auf Anhieb richtig, noch eine Stufe anziehen. Sind die meisten falsch, etwas zurücknehmen.
 
 ## Die Tafel (Szenen-SVG)

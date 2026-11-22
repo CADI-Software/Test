@@ -1,10 +1,6 @@
 {
  "upcoming": [
   {
-   "area": "business",
-   "title": "Positioning: why the smaller market is the bigger lever"
-  },
-  {
    "area": "adhs",
    "title": "Time blindness: how ADHD bends the sense of time"
   },
@@ -17,12 +13,16 @@
    "title": "Fusion power: what the recent records do and do not mean"
   },
   {
+   "area": "business",
+   "title": "Pricing: why most small companies charge too little"
+  },
+  {
    "area": "adhs",
    "title": "ADHD in love and relationships"
   },
   {
-   "area": "business",
-   "title": "Pricing: why most small companies charge too little"
+   "area": "ki",
+   "title": "Attention: how a language model decides what matters"
   },
   {
    "area": "bonus",
