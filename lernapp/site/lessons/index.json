@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-23-adhs-02",
+   "date": "2026-11-23",
+   "area": "adhs",
+   "series": "Understanding ADHD",
+   "episode": 2,
+   "title": "Time blindness: how ADHD bends the sense of time",
+   "hook": "Forty minutes feel like ten, five minutes feel like twenty. Why the inner clock is unreliable with ADHD, and how to replace it.",
+   "duration": 419.52,
+   "audio": true,
+   "voice": "female"
+  },
+  {
    "id": "2026-11-22-business-01",
    "date": "2026-11-22",
    "area": "business",
@@ -75,10 +87,6 @@
  ],
  "upcoming": [
   {
-   "area": "adhs",
-   "title": "Time blindness: how ADHD bends the sense of time"
-  },
-  {
    "area": "ki",
    "title": "How a network learns, explained with one example"
   },
@@ -99,9 +107,13 @@
    "title": "Attention: how a language model decides what matters"
   },
   {
+   "area": "innovation",
+   "title": "Humanoid robots: what is real and what is a demo"
+  },
+  {
    "area": "bonus",
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-22T04:26:33.178Z"
+ "updated": "2026-11-23T04:30:55.251Z"
 }

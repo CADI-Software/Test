@@ -114,6 +114,8 @@ Rückmeldung des Nutzers vom 20.11.2026: „Fragen sind grundsätzlich zu einfac
 - Der Build mischt die Reihenfolge der Antworten selbst.
 - Stand 21.11.2026 (erste Folge nach der Umstellung): 2 von 4 Fragen auf Anhieb richtig. Diese Schwierigkeit halten.
   Dabei auf Eindeutigkeit achten: Die richtige Antwort muss sich aus der Folge sauber herleiten lassen, auch wenn die anderen verlockend klingen.
+- Stand 22.11.2026: wieder 4 von 4 auf Anhieb richtig. Seit 23.11. eine Stufe schwerer: mindestens eine Rechenfrage in zwei Schritten,
+  eine Frage, bei der jede Antwort gegen zwei Beobachtungen geprüft werden muss, und eine zur Deutung einer Kennzahl (Überlappung, Durchschnitt, Ursache).
 - Quiz-Ergebnisse weiter beobachten: Sind wieder alle Fragen auf Anhieb richtig, noch eine Stufe anziehen. Sind die meisten falsch, etwas zurücknehmen.
 
 ## Die Tafel (Szenen-SVG)

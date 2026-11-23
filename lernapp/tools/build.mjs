@@ -183,5 +183,6 @@ index.upcoming = plan.upcoming || [];
 index.updated = new Date().toISOString();
 fs.writeFileSync(indexFile, JSON.stringify(index, null, 1));
 
-const mm = `${Math.floor(duration / 60)}:${String(Math.round(duration % 60)).padStart(2, '0')}`;
+const secs = Math.round(duration);
+const mm = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
 console.log(`Gebaut: ${id} · ${scenes.length} Szenen · ${mm} min · Ton: ${hasAudio ? 'ja' : 'nein'}`);
