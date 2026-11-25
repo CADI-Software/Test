@@ -1,7 +1,7 @@
 # Kopfkino: Ablauf für die tägliche Folge
 
 Kopfkino ist eine private Lernseite (Claude-Artifact) für einen Nutzer, der sie überwiegend am Handy nutzt.
-Jeden Tag erscheint eine neue Folge: 8 bis 10 Minuten, animierte Tafel, gesprochener Text, Untertitel.
+Jeden Tag erscheint eine neue Folge: 9 bis 10 Minuten, animierte Tafel, gesprochener Text, Untertitel.
 Dieses Dokument beschreibt, wie eine Folge entsteht. Einstellungen stehen in `config.json`.
 
 ## Was der Nutzer will
@@ -91,7 +91,10 @@ export default {
 };
 ```
 
-Umfang: 14 bis 17 Szenen, 4 bis 6 Zeilen je Szene, insgesamt 1.350 bis 1.600 englische Wörter (ergibt 8 bis 10 Minuten; Folge 1 hatte 1.200 Wörter und 7 Minuten).
+Umfang: 17 bis 19 Szenen, 4 bis 6 Zeilen je Szene. Ziel sind 9 bis 10 Minuten, nicht weniger als 9.
+Rückmeldung vom 24.11.: Eine Folge mit 7:38 war „zu_kurz“. Seit dem 25.11. gilt deshalb die längere Vorgabe (25.11.: 18 Szenen, 9:19).
+Faustwerte: Frauenstimme etwa 185 Wörter je Minute, also 1.700 bis 1.850 Wörter. Männerstimme etwa 170 Wörter je Minute, also 1.550 bis 1.700 Wörter.
+Kommt die Rückmeldung „zu_lang“, wieder auf 8 bis 9 Minuten zurückgehen.
 Eine Zeile ist ein Untertitel: höchstens 190 Zeichen, ein Gedanke. `say` immer, wenn der Anzeigetext Ziffern, Formeln oder schwer aussprechbare Abkürzungen enthält: im Sprechtext dürfen keine Ziffern stehen
 (Zahlen als Wörter ausschreiben, Jahreszahlen wie „nineteen forty-three“), sonst bricht der Build ab.
 
@@ -118,6 +121,7 @@ Rückmeldung des Nutzers vom 20.11.2026: „Fragen sind grundsätzlich zu einfac
   Dabei auf Eindeutigkeit achten: Die richtige Antwort muss sich aus der Folge sauber herleiten lassen, auch wenn die anderen verlockend klingen.
 - Stand 22.11.2026: wieder 4 von 4 auf Anhieb richtig. Seit 23.11. eine Stufe schwerer: mindestens eine Rechenfrage in zwei Schritten,
   eine Frage, bei der jede Antwort gegen zwei Beobachtungen geprüft werden muss, und eine zur Deutung einer Kennzahl (Überlappung, Durchschnitt, Ursache).
+- Stand 23.11. und 24.11.2026: jeweils 3 von 4 auf Anhieb richtig (am 24.11. ging die Zahlenfrage daneben). Das passt, Schwierigkeit so lassen.
 - Quiz-Ergebnisse weiter beobachten: Sind wieder alle Fragen auf Anhieb richtig, noch eine Stufe anziehen. Sind die meisten falsch, etwas zurücknehmen.
 
 ## Die Tafel (Szenen-SVG)

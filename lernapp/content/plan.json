@@ -1,10 +1,6 @@
 {
  "upcoming": [
   {
-   "area": "ki",
-   "title": "How a network learns, explained with one example"
-  },
-  {
    "area": "innovation",
    "title": "Fusion power: what the recent records do and do not mean"
   },
@@ -23,6 +19,10 @@
   {
    "area": "innovation",
    "title": "Humanoid robots: what is real and what is a demo"
+  },
+  {
+   "area": "adhs",
+   "title": "ADHD and desire: novelty, attention and sexuality"
   },
   {
    "area": "bonus",

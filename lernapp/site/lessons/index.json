@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-25-ki-04",
+   "date": "2026-11-25",
+   "area": "ki",
+   "series": "Understanding AI",
+   "episode": 2,
+   "title": "How a network learns, with one example worked by hand",
+   "hook": "Nobody sets the billions of dials. The network is only told how wrong it was. One tiny example shows how that is enough.",
+   "duration": 558.62,
+   "audio": true,
+   "voice": "female"
+  },
+  {
    "id": "2026-11-24-adhs-03",
    "date": "2026-11-24",
    "area": "adhs",
@@ -99,10 +111,6 @@
  ],
  "upcoming": [
   {
-   "area": "ki",
-   "title": "How a network learns, explained with one example"
-  },
-  {
    "area": "innovation",
    "title": "Fusion power: what the recent records do and do not mean"
   },
@@ -123,9 +131,13 @@
    "title": "Humanoid robots: what is real and what is a demo"
   },
   {
+   "area": "adhs",
+   "title": "ADHD and desire: novelty, attention and sexuality"
+  },
+  {
    "area": "bonus",
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-24T04:27:39.505Z"
+ "updated": "2026-11-25T04:32:28.948Z"
 }
