@@ -95,6 +95,15 @@ Umfang: 17 bis 19 Szenen, 4 bis 6 Zeilen je Szene. Ziel sind 9 bis 10 Minuten, n
 Rückmeldung vom 24.11.: Eine Folge mit 7:38 war „zu_kurz“. Seit dem 25.11. gilt deshalb die längere Vorgabe (25.11.: 18 Szenen, 9:19).
 Faustwerte: Frauenstimme etwa 185 Wörter je Minute, also 1.700 bis 1.850 Wörter. Männerstimme etwa 170 Wörter je Minute, also 1.550 bis 1.700 Wörter.
 Kommt die Rückmeldung „zu_lang“, wieder auf 8 bis 9 Minuten zurückgehen.
+Rückmeldung vom 25.11.: 9:19 „passt“. Diese Länge halten.
+Am genauesten lässt sich die Länge über die Zeichenzahl schätzen, die `build.mjs --narration` ausgibt:
+Frauenstimme etwa 17,3 Zeichen je Sekunde, Männerstimme etwa 15,5. Für 9:30 bis 10:00 sind das rund 9.900 bis 10.400 Zeichen (Frau)
+oder 8.800 bis 9.300 Zeichen (Mann). Vor dem Vertonen prüfen und kürzen (26.11.: erster Entwurf 11.400 Zeichen, wären über 12 Minuten gewesen).
+
+KI-Technik-Folgen (Reihe „Understanding AI“): Beide bisherigen Folgen (17.11. und 25.11.) wurden mit „zu_schwer“ bewertet,
+am 25.11. zusätzlich nur 1 von 4 Quizfragen auf Anhieb richtig. Für diese Reihe deshalb: nur EIN Kernkonzept je Folge,
+kein Rechnen von Hand mit Formeln (Zahlen höchstens als Größenvergleich), jeder Schritt zuerst als Alltagsbild und erst dann der Fachbegriff,
+Quizfragen zum Verständnis des Bildes statt Rechenfragen. Alle anderen Bereiche liegen auf Stufe 2 bei „passt“ und bleiben so.
 Eine Zeile ist ein Untertitel: höchstens 190 Zeichen, ein Gedanke. `say` immer, wenn der Anzeigetext Ziffern, Formeln oder schwer aussprechbare Abkürzungen enthält: im Sprechtext dürfen keine Ziffern stehen
 (Zahlen als Wörter ausschreiben, Jahreszahlen wie „nineteen forty-three“), sonst bricht der Build ab.
 
@@ -122,6 +131,8 @@ Rückmeldung des Nutzers vom 20.11.2026: „Fragen sind grundsätzlich zu einfac
 - Stand 22.11.2026: wieder 4 von 4 auf Anhieb richtig. Seit 23.11. eine Stufe schwerer: mindestens eine Rechenfrage in zwei Schritten,
   eine Frage, bei der jede Antwort gegen zwei Beobachtungen geprüft werden muss, und eine zur Deutung einer Kennzahl (Überlappung, Durchschnitt, Ursache).
 - Stand 23.11. und 24.11.2026: jeweils 3 von 4 auf Anhieb richtig (am 24.11. ging die Zahlenfrage daneben). Das passt, Schwierigkeit so lassen.
+- Stand 25.11.2026 (KI-Technik, Folge als „zu_schwer“ bewertet): nur 1 von 4 auf Anhieb. Das lag an der Folge, nicht nur an den Fragen.
+  Allgemeine Schwierigkeit nicht weiter anziehen; in KI-Technik-Folgen leichtere, bildhafte Fragen.
 - Quiz-Ergebnisse weiter beobachten: Sind wieder alle Fragen auf Anhieb richtig, noch eine Stufe anziehen. Sind die meisten falsch, etwas zurücknehmen.
 
 ## Die Tafel (Szenen-SVG)
