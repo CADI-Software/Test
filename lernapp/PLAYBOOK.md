@@ -95,7 +95,7 @@ Umfang: 17 bis 19 Szenen, 4 bis 6 Zeilen je Szene. Ziel sind 9 bis 10 Minuten, n
 Rückmeldung vom 24.11.: Eine Folge mit 7:38 war „zu_kurz“. Seit dem 25.11. gilt deshalb die längere Vorgabe (25.11.: 18 Szenen, 9:19).
 Faustwerte: Frauenstimme etwa 185 Wörter je Minute, also 1.700 bis 1.850 Wörter. Männerstimme etwa 170 Wörter je Minute, also 1.550 bis 1.700 Wörter.
 Kommt die Rückmeldung „zu_lang“, wieder auf 8 bis 9 Minuten zurückgehen.
-Rückmeldung vom 25.11.: 9:19 „passt“. Diese Länge halten.
+Rückmeldung vom 25.11.: 9:19 „passt“. Auch 10:17 (26.11.) und 9:24 (27.11.) wurden mit „passt“ bewertet. Diese Länge halten.
 Am genauesten lässt sich die Länge über die Zeichenzahl schätzen, die `build.mjs --narration` ausgibt:
 Frauenstimme etwa 17,3 Zeichen je Sekunde, Männerstimme etwa 15,5. Für 9:30 bis 10:00 sind das rund 9.900 bis 10.400 Zeichen (Frau)
 oder 8.800 bis 9.300 Zeichen (Mann). Vor dem Vertonen prüfen und kürzen (26.11.: erster Entwurf 11.400 Zeichen, wären über 12 Minuten gewesen).
@@ -133,6 +133,9 @@ Rückmeldung des Nutzers vom 20.11.2026: „Fragen sind grundsätzlich zu einfac
 - Stand 23.11. und 24.11.2026: jeweils 3 von 4 auf Anhieb richtig (am 24.11. ging die Zahlenfrage daneben). Das passt, Schwierigkeit so lassen.
 - Stand 25.11.2026 (KI-Technik, Folge als „zu_schwer“ bewertet): nur 1 von 4 auf Anhieb. Das lag an der Folge, nicht nur an den Fragen.
   Allgemeine Schwierigkeit nicht weiter anziehen; in KI-Technik-Folgen leichtere, bildhafte Fragen.
+- Stand 26.11. (Innovation): 3 von 4. Stand 27.11. (Business): 1 von 4, jede falsche Frage aber nur einmal falsch, Niveau „passt“.
+  Schwierigkeit nicht weiter anziehen. Vor allem auf Eindeutigkeit achten: Die Frage muss klar sagen, wonach gesucht ist,
+  und die Folge muss den Unterschied zwischen den Antworten ausdrücklich erklärt haben.
 - Quiz-Ergebnisse weiter beobachten: Sind wieder alle Fragen auf Anhieb richtig, noch eine Stufe anziehen. Sind die meisten falsch, etwas zurücknehmen.
 
 ## Die Tafel (Szenen-SVG)

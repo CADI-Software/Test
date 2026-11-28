@@ -1,6 +1,18 @@
 {
  "lessons": [
   {
+   "id": "2026-11-28-adhs-04",
+   "date": "2026-11-28",
+   "area": "adhs",
+   "series": "Understanding ADHD",
+   "episode": 4,
+   "title": "ADHD in love: why it starts so bright, and where it gets hard",
+   "hook": "The start is intense. A year later, one partner feels ignored and the other feels criticised all the time. Nobody stopped loving. Here is the mechanism, and what helps.",
+   "duration": 591.26,
+   "audio": true,
+   "voice": "male"
+  },
+  {
    "id": "2026-11-27-business-02",
    "date": "2026-11-27",
    "area": "business",
@@ -135,10 +147,6 @@
  ],
  "upcoming": [
   {
-   "area": "adhs",
-   "title": "ADHD in love and relationships"
-  },
-  {
    "area": "ki",
    "title": "Attention: how a language model decides what matters (one idea, no maths)"
   },
@@ -159,9 +167,13 @@
    "title": "The first ten customers: how founders really sell"
   },
   {
+   "area": "innovation",
+   "title": "mRNA beyond vaccines: what the technology can and cannot do"
+  },
+  {
    "area": "bonus",
    "title": "A surprise topic based on your feedback"
   }
  ],
- "updated": "2026-11-27T04:30:36.369Z"
+ "updated": "2026-11-28T04:27:21.928Z"
 }
